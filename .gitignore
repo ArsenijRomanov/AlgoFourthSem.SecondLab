@@ -1,0 +1,77 @@
+# Build results
+[Bb]in/
+[Oo]bj/
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+AnyCPU/
+
+# Publish
+publish/
+artifacts/
+
+# User-specific files
+*.user
+*.rsuser
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Rider
+.idea/
+*.sln.iml
+
+# Visual Studio
+.vs/
+
+# VS Code
+.vscode/
+
+# NuGet
+*.nupkg
+*.snupkg
+packages/
+!packages/build/
+.nuget/
+*.nuget.props
+*.nuget.targets
+
+# Logs
+*.log
+
+# Test results
+[Tt]est[Rr]esult*/
+[Tt]est[Rr]esults/
+*.trx
+
+# Coverage
+coverage/
+coverage.*
+*.coverage
+*.coveragexml
+
+# Resharper
+_ReSharper*/
+*.[Rr]e[Ss]harper
+*.DotSettings.user
+
+# DotMemory / DotTrace
+*.dmw
+*.dotTrace
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Local env / secrets
+.env
+.env.*
+appsettings.Development.json
+secrets.json
+
+# Generated files
+Generated/
+*.generated.cs
+
+all_code_dump.txt
