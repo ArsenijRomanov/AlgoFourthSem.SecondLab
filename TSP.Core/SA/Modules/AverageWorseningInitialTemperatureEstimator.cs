@@ -44,7 +44,6 @@ public sealed class AverageWorseningInitialTemperatureEstimator(
                 var context = new RouteNeighborGeneratorContext(
                     currentRoute,
                     graph,
-                    _options.FallbackTemperature,
                     stepIndex);
 
                 var neighborRoute = _routeNeighborGenerator.GenerateNeighbor(context);

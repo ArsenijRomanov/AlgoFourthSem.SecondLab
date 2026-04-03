@@ -4,7 +4,7 @@ public interface ITspSolver
 {
     ISolverState State { get; }
 
-    void Initialize(IWeightedGraph graph);
+    void Initialize();
 
     void Step();
 

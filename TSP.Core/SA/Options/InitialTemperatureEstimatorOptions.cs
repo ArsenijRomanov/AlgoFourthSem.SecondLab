@@ -17,7 +17,7 @@ public record InitialTemperatureEstimatorOptions
         ArgumentOutOfRangeException.ThrowIfNegativeOrZero(chainLength);
         ArgumentOutOfRangeException.ThrowIfNegativeOrZero(fallbackTemperature);
         ArgumentOutOfRangeException.ThrowIfNegativeOrZero(targetAcceptanceProbability);
-        if (targetAcceptanceProbability is < 0 or > 1)
+        if (targetAcceptanceProbability is <= 0 or >= 1)
             throw new ArgumentOutOfRangeException(
                 nameof(targetAcceptanceProbability),
                 "Целевая вероятность принятия решения должна быть от 0 до 1");
