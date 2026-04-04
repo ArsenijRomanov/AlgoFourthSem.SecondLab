@@ -1,0 +1,89 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="using:TSP.Avalonia.ViewModels"
+        x:Class="TSP.Avalonia.Views.AdvancedSettingsWindow"
+        Width="620"
+        Height="720"
+        MinWidth="560"
+        MinHeight="620"
+        Title="Расширенные настройки"
+        mc:Ignorable="d">
+  <Design.DataContext>
+    <vm:MainWindowViewModel />
+  </Design.DataContext>
+
+  <ScrollViewer Margin="16" VerticalScrollBarVisibility="Auto">
+    <StackPanel Spacing="0">
+      <Border Classes="card" IsVisible="{Binding IsSimulatedAnnealing}">
+        <StackPanel Spacing="10">
+          <TextBlock Classes="panel-title" Text="Расширенные настройки SA" />
+          <StackPanel>
+            <TextBlock Classes="field-label" Text="Target acceptance probability" />
+            <NumericUpDown Minimum="0.01"
+                           Maximum="0.95"
+                           Increment="0.01"
+                           FormatString="0.00"
+                           Value="{Binding TargetAcceptanceProbability}" />
+            <TextBlock Classes="muted"
+                       Text="Используется при автоматическом подборе начальной температуры." />
+          </StackPanel>
+
+          <StackPanel>
+            <TextBlock Classes="field-label" Text="Geometric alpha" />
+            <NumericUpDown Minimum="0.8"
+                           Maximum="0.99"
+                           Increment="0.01"
+                           FormatString="0.00"
+                           Value="{Binding GeometricAlpha}" />
+            <TextBlock Classes="muted"
+                       Text="Применяется только для базовой версии с геометрическим охлаждением." />
+          </StackPanel>
+        </StackPanel>
+      </Border>
+
+      <Border Classes="card" IsVisible="{Binding IsAntColony}">
+        <StackPanel Spacing="10">
+          <TextBlock Classes="panel-title" Text="Расширенные настройки ACO" />
+          <Grid ColumnDefinitions="*,*" ColumnSpacing="12" RowDefinitions="Auto,Auto,Auto">
+            <StackPanel Grid.Row="0" Grid.Column="0">
+              <TextBlock Classes="field-label" Text="Alpha" />
+              <NumericUpDown Minimum="0.1" Maximum="10" Increment="0.1" FormatString="0.0" Value="{Binding Alpha}" />
+            </StackPanel>
+            <StackPanel Grid.Row="0" Grid.Column="1">
+              <TextBlock Classes="field-label" Text="Beta" />
+              <NumericUpDown Minimum="0.1" Maximum="10" Increment="0.1" FormatString="0.0" Value="{Binding Beta}" />
+            </StackPanel>
+            <StackPanel Grid.Row="1" Grid.Column="0">
+              <TextBlock Classes="field-label" Text="Evaporation rate" />
+              <NumericUpDown Minimum="0.1" Maximum="0.99" Increment="0.01" FormatString="0.00" Value="{Binding EvaporationRate}" />
+            </StackPanel>
+            <StackPanel Grid.Row="1" Grid.Column="1">
+              <TextBlock Classes="field-label" Text="Q" />
+              <NumericUpDown Minimum="0.1" Maximum="10000" Increment="1" FormatString="0.###" Value="{Binding Q}" />
+            </StackPanel>
+            <StackPanel Grid.Row="2" Grid.Column="0">
+              <TextBlock Classes="field-label" Text="Initial pheromone" />
+              <NumericUpDown Minimum="0.01" Maximum="100" Increment="0.01" FormatString="0.##" Value="{Binding InitialPheromone}" />
+            </StackPanel>
+            <StackPanel Grid.Row="2" Grid.Column="1" IsVisible="{Binding UseEliteAnts}">
+              <TextBlock Classes="field-label" Text="Коэффициент элитного усиления" />
+              <NumericUpDown Minimum="1" Maximum="10" Increment="1" Value="{Binding EliteAntCount}" />
+            </StackPanel>
+          </Grid>
+        </StackPanel>
+      </Border>
+
+      <Border Classes="card">
+        <StackPanel Spacing="8">
+          <TextBlock Classes="panel-title" Text="Подсказка" />
+          <TextBlock TextWrapping="Wrap"
+                     Text="Для больших графов держите показ весов и номеров выключенным — они автоматически появляются при достаточном увеличении. Для ACO переключайте только один режим наложения за раз: либо текущие пути колонии, либо карту феромонов." />
+        </StackPanel>
+      </Border>
+
+      <Button Classes="primary-action" Content="Закрыть" HorizontalAlignment="Right" Click="CloseClick" />
+    </StackPanel>
+  </ScrollViewer>
+</Window>

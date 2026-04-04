@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TSP.Core", "TSP.Core\TSP.Core.csproj", "{8EA0A2E3-13FD-4C1C-9DF4-91A8E34BFE8E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TSP.Avalonia", "TSP.Avalonia\TSP.Avalonia.csproj", "{7C583E6B-DC65-44E6-B5A3-E97F34BB4E6D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{8EA0A2E3-13FD-4C1C-9DF4-91A8E34BFE8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8EA0A2E3-13FD-4C1C-9DF4-91A8E34BFE8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8EA0A2E3-13FD-4C1C-9DF4-91A8E34BFE8E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7C583E6B-DC65-44E6-B5A3-E97F34BB4E6D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C583E6B-DC65-44E6-B5A3-E97F34BB4E6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C583E6B-DC65-44E6-B5A3-E97F34BB4E6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C583E6B-DC65-44E6-B5A3-E97F34BB4E6D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

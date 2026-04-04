@@ -1,0 +1,31 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:controls="using:TSP.Avalonia.Controls"
+        xmlns:vm="using:TSP.Avalonia.ViewModels"
+        x:Class="TSP.Avalonia.Views.HistoryWindow"
+        Width="900"
+        Height="560"
+        MinWidth="760"
+        MinHeight="460"
+        Title="График лучшего значения"
+        mc:Ignorable="d">
+  <Design.DataContext>
+    <vm:MainWindowViewModel />
+  </Design.DataContext>
+
+  <Grid Margin="16" RowDefinitions="Auto,*">
+    <Border Classes="card">
+      <StackPanel Spacing="4">
+        <TextBlock Classes="panel-title" Text="История лучшего значения" />
+        <TextBlock Classes="muted"
+                   Text="Точки ставятся по номеру итерации. После Step xN новые точки будут отстоять друг от друга на N." />
+      </StackPanel>
+    </Border>
+
+    <Border Grid.Row="1" Classes="surface-card">
+      <controls:HistoryChartControl Points="{Binding History}" />
+    </Border>
+  </Grid>
+</Window>
