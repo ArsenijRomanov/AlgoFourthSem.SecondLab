@@ -20,16 +20,16 @@ public partial class MainWindow : Window
     private MainWindowViewModel? GetViewModel()
         => DataContext as MainWindowViewModel;
 
-    private void ZoomInPlotClick(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
+    public void ZoomInPlotClick(object? sender, RoutedEventArgs e)
         => GetGraphCanvas()?.ZoomIn();
 
-    private void ZoomOutPlotClick(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
+    public void ZoomOutPlotClick(object? sender, RoutedEventArgs e)
         => GetGraphCanvas()?.ZoomOut();
 
-    private void ResetPlotViewClick(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
+    public void ResetPlotViewClick(object? sender, RoutedEventArgs e)
         => GetGraphCanvas()?.ResetView();
 
-    private void BestRoutePeekPressed(object? sender, PointerPressedEventArgs e)
+    public void BestRoutePeekPressed(object? sender, PointerPressedEventArgs e)
     {
         if (GetViewModel() is { } viewModel)
         {
@@ -37,7 +37,7 @@ public partial class MainWindow : Window
         }
     }
 
-    private void BestRoutePeekReleased(object? sender, RoutedEventArgs e)
+    public void BestRoutePeekReleased(object? sender, PointerReleasedEventArgs e)
     {
         if (GetViewModel() is { } viewModel)
         {
@@ -45,7 +45,16 @@ public partial class MainWindow : Window
         }
     }
 
-    private async void BrowseGraphClick(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
+
+    public void BestRoutePeekCaptureLost(object? sender, PointerCaptureLostEventArgs e)
+    {
+        if (GetViewModel() is { } viewModel)
+        {
+            viewModel.ShowBestRoutePeek = false;
+        }
+    }
+
+    public async void BrowseGraphClick(object? sender, RoutedEventArgs e)
     {
         if (GetViewModel() is not { } viewModel || StorageProvider is null)
         {
@@ -76,7 +85,7 @@ public partial class MainWindow : Window
         GetGraphCanvas()?.ResetView();
     }
 
-    private void OpenAdvancedSettingsClick(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
+    public void OpenAdvancedSettingsClick(object? sender, RoutedEventArgs e)
     {
         if (GetViewModel() is not { } viewModel)
         {
@@ -91,7 +100,7 @@ public partial class MainWindow : Window
         window.Show(this);
     }
 
-    private void OpenHistoryClick(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
+    public void OpenHistoryClick(object? sender, RoutedEventArgs e)
     {
         if (GetViewModel() is not { } viewModel || !viewModel.CanShowHistory)
         {
@@ -106,7 +115,7 @@ public partial class MainWindow : Window
         window.Show(this);
     }
 
-    private async void ExportGraphImageClick(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
+    public async void ExportGraphImageClick(object? sender, RoutedEventArgs e)
     {
         if (StorageProvider is null || GetGraphCanvas() is not { } graphCanvas)
         {
@@ -122,7 +131,7 @@ public partial class MainWindow : Window
         await graphCanvas.ExportPngAsync(path);
     }
 
-    private async void ExportRouteClick(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
+    public async void ExportRouteClick(object? sender, RoutedEventArgs e)
     {
         if (StorageProvider is null || GetViewModel() is not { } viewModel)
         {

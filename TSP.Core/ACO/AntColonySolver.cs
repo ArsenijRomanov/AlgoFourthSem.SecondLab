@@ -49,9 +49,6 @@ public sealed class AntColonySolver(
     {
         EnsureInitialized();
 
-        if (ShouldStop())
-            return;
-
         var colonyContext = new AntColonyBuildContext(
             _graph,
             _pheromones!,

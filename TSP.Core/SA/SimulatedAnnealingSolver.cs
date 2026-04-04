@@ -86,9 +86,6 @@ public sealed class SimulatedAnnealingSolver(
     {
         EnsureInitialized();
 
-        if (ShouldStop())
-            return;
-
         var context = new RouteNeighborGeneratorContext(
             _currentRoute!,
             _graph,

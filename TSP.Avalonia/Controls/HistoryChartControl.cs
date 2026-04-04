@@ -1,7 +1,7 @@
+using System.Globalization;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Media;
-using Avalonia.Media.TextFormatting;
 using TSP.Avalonia.Models;
 
 namespace TSP.Avalonia.Controls;
@@ -28,7 +28,7 @@ public sealed class HistoryChartControl : Control
 
         var bounds = Bounds.Deflate(16);
         context.FillRectangle(new SolidColorBrush(Color.Parse("#0F1722")), Bounds);
-        context.DrawRectangle(new Pen(new SolidColorBrush(Color.Parse("#223047"))), Bounds, 16, 16);
+        context.DrawRectangle(null, new Pen(new SolidColorBrush(Color.Parse("#223047"))), Bounds, 16, 16);
 
         if (Points.Count == 0)
         {
@@ -74,7 +74,7 @@ public sealed class HistoryChartControl : Control
         {
             var x = plot.Left + (point.Iteration - minIteration) * plot.Width / (maxIteration - minIteration);
             var y = plot.Bottom - (point.BestCost - minCost) * plot.Height / (maxCost - minCost);
-            context.FillEllipse(new SolidColorBrush(Color.Parse("#7EE787")), new Point(x, y), 4, 4);
+            context.DrawEllipse(new SolidColorBrush(Color.Parse("#7EE787")), null, new Point(x, y), 4, 4);
         }
 
         DrawLabel(context, $"Итерации: {minIteration} – {maxIteration}", new Point(bounds.Left + 8, bounds.Top + 8), 12, Brushes.White);
@@ -83,12 +83,14 @@ public sealed class HistoryChartControl : Control
 
     private static void DrawLabel(DrawingContext context, string text, Point point, double fontSize, IBrush brush)
     {
-        var layout = new TextLayout(
+        var formattedText = new FormattedText(
             text,
+            CultureInfo.CurrentUICulture,
+            FlowDirection.LeftToRight,
             new Typeface(FontFamily.Default),
             fontSize,
             brush);
 
-        context.DrawText(layout, point);
+        context.DrawText(formattedText, point);
     }
 }

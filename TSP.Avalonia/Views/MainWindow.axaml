@@ -252,7 +252,7 @@
                     IsEnabled="{Binding HasBestRoute}"
                     PointerPressed="BestRoutePeekPressed"
                     PointerReleased="BestRoutePeekReleased"
-                    PointerCaptureLost="BestRoutePeekReleased" />
+                    PointerCaptureLost="BestRoutePeekCaptureLost" />
             <Button Classes="action" Content="Экспорт PNG" Click="ExportGraphImageClick" />
             <Button Classes="action"
                     Content="Экспорт маршрута"

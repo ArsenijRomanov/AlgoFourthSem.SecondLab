@@ -3,7 +3,6 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia.Media;
-using Avalonia.Media.TextFormatting;
 using Avalonia.Media.Imaging;
 using TSP.ACO;
 using TSP.Avalonia.Models;
@@ -225,7 +224,7 @@ public sealed class GraphCanvasControl : Control
         var background = new SolidColorBrush(Color.Parse("#0E141B"));
         var borderPen = new Pen(new SolidColorBrush(Color.Parse("#223047")), 1);
         context.FillRectangle(background, Bounds);
-        context.DrawRoundedRectangle(null, borderPen, Bounds, new CornerRadius(18));
+        context.DrawRectangle(null, borderPen, Bounds, 18, 18);
 
         if (GraphData is null)
         {
@@ -302,8 +301,8 @@ public sealed class GraphCanvasControl : Control
         foreach (var position in GraphData.Positions)
         {
             var point = fit.Map(position.Point);
-            context.FillEllipse(new SolidColorBrush(Color.Parse("#D8E6FF")), point, radius, radius);
-            context.DrawEllipse(new Pen(new SolidColorBrush(Color.Parse("#0D1117")), 2), point, radius, radius);
+            context.DrawEllipse(new SolidColorBrush(Color.Parse("#D8E6FF")), null, point, radius, radius);
+            context.DrawEllipse(null, new Pen(new SolidColorBrush(Color.Parse("#0D1117")), 2), point, radius, radius);
 
             if (vertexDetails)
             {
@@ -482,9 +481,10 @@ public sealed class GraphCanvasControl : Control
             return;
         }
 
-        var direction = target - source;
-        var length = Math.Max(1, direction.Length);
-        var unit = direction / length;
+        var dx = target.X - source.X;
+        var dy = target.Y - source.Y;
+        var length = Math.Max(1, Math.Sqrt(dx * dx + dy * dy));
+        var unit = new Vector(dx / length, dy / length);
         var normal = new Vector(-unit.Y, unit.X);
         var arrowLength = 8 + thickness;
         var arrowWidth = 4 + thickness * 0.4;
@@ -524,8 +524,14 @@ public sealed class GraphCanvasControl : Control
 
     private static void DrawText(DrawingContext context, string text, Point point, double fontSize, IBrush brush)
     {
-        var layout = new TextLayout(text, new Typeface(FontFamily.Default), fontSize, brush);
-        context.DrawText(layout, point);
+        var formattedText = new FormattedText(
+            text,
+            CultureInfo.CurrentUICulture,
+            FlowDirection.LeftToRight,
+            new Typeface(FontFamily.Default),
+            fontSize,
+            brush);
+        context.DrawText(formattedText, point);
     }
 
     private readonly record struct EdgeStyle(IBrush Brush, double Thickness, double Opacity);

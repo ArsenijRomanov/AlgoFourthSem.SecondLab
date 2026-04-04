@@ -1,4 +1,5 @@
 using Avalonia.Controls;
+using Avalonia.Interactivity;
 
 namespace TSP.Avalonia.Views;
 
@@ -9,6 +10,8 @@ public partial class AdvancedSettingsWindow : Window
         InitializeComponent();
     }
 
-    private void CloseClick(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
-        => Close();
+    private void CloseClick(object? sender, RoutedEventArgs e)
+    {
+        Close();
+    }
 }
