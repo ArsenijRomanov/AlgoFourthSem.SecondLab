@@ -6,30 +6,37 @@
         xmlns:controls="using:TSP.Avalonia.Controls"
         x:Class="TSP.Avalonia.Views.MainWindow"
         mc:Ignorable="d"
-        Width="1600"
-        Height="980"
-        MinWidth="1280"
-        MinHeight="840"
+        WindowState="Maximized"
+        WindowStartupLocation="CenterScreen"
+        MinWidth="1100"
+        MinHeight="760"
         Title="Задача коммивояжёра — визуализация алгоритмов">
   <Design.DataContext>
     <vm:MainWindowViewModel />
   </Design.DataContext>
 
-  <Grid RowDefinitions="*,Auto" ColumnDefinitions="420,*">
+  <Grid Margin="16"
+        RowDefinitions="*,Auto"
+        ColumnDefinitions="380,*"
+        ColumnSpacing="16"
+        RowSpacing="12">
+
     <ScrollViewer Grid.Row="0"
                   Grid.Column="0"
-                  Margin="0,16,0,12"
                   VerticalScrollBarVisibility="Auto"
                   HorizontalScrollBarVisibility="Disabled"
                   AllowAutoHide="False">
-      <StackPanel Margin="16,0,16,16" Spacing="0">
+      <StackPanel Spacing="0">
         <Border Classes="card">
           <StackPanel Spacing="10">
             <TextBlock Classes="panel-title" Text="Источник графа" />
+
             <TextBlock Classes="field-label" Text="Встроенный пример" />
+
             <Grid ColumnDefinitions="*,Auto" ColumnSpacing="10">
               <ComboBox ItemsSource="{Binding ExampleOptions}"
                         SelectedItem="{Binding SelectedExample}" />
+
               <Button Grid.Column="1"
                       Classes="action"
                       Command="{Binding LoadExampleCommand}"
@@ -42,8 +49,12 @@
 
             <Border Classes="surface-card">
               <StackPanel Spacing="4">
-                <TextBlock FontSize="16" FontWeight="SemiBold" Text="{Binding GraphTitle}" />
-                <TextBlock Classes="muted" Text="{Binding GraphSummary}" TextWrapping="Wrap" />
+                <TextBlock FontSize="16"
+                           FontWeight="SemiBold"
+                           Text="{Binding GraphTitle}" />
+                <TextBlock Classes="muted"
+                           Text="{Binding GraphSummary}"
+                           TextWrapping="Wrap" />
               </StackPanel>
             </Border>
           </StackPanel>
@@ -52,6 +63,7 @@
         <Border Classes="card">
           <StackPanel Spacing="10">
             <TextBlock Classes="panel-title" Text="Конфигурация" />
+
             <StackPanel>
               <TextBlock Classes="field-label" Text="Алгоритм" />
               <ComboBox ItemsSource="{Binding AlgorithmOptions}"
@@ -67,6 +79,7 @@
             <StackPanel IsVisible="{Binding IsSimulatedAnnealing}" Spacing="8">
               <CheckBox Content="Автоматический расчёт начальной температуры"
                         IsChecked="{Binding UseAutomaticInitialTemperature}" />
+
               <StackPanel IsVisible="{Binding IsManualInitialTemperature}">
                 <TextBlock Classes="field-label" Text="Начальная температура" />
                 <NumericUpDown Minimum="0.1"
@@ -85,6 +98,7 @@
                                Increment="1"
                                Value="{Binding AntCount}" />
               </StackPanel>
+
               <CheckBox Content="Оптимизация: элитные муравьи"
                         IsChecked="{Binding UseEliteAnts}" />
             </StackPanel>
@@ -98,56 +112,62 @@
         <Border Classes="card">
           <StackPanel Spacing="10">
             <TextBlock Classes="panel-title" Text="Критерии остановки и запуск" />
-            <Grid ColumnDefinitions="*,*" ColumnSpacing="12">
-              <StackPanel>
-                <TextBlock Classes="field-label" Text="Max iterations" />
-                <NumericUpDown Minimum="100"
-                               Maximum="100000"
-                               Increment="100"
-                               Value="{Binding MaxIterations}" />
-              </StackPanel>
-              <StackPanel>
-                <TextBlock Classes="field-label" Text="Step xN" />
-                <NumericUpDown Minimum="1"
-                               Maximum="1000"
-                               Increment="1"
-                               Value="{Binding StepBatchSize}" />
-              </StackPanel>
-            </Grid>
+
+            <StackPanel>
+              <TextBlock Classes="field-label"
+                         Text="Максимум итераций для Run"
+                         TextWrapping="Wrap" />
+              <NumericUpDown Minimum="100"
+                             Maximum="100000"
+                             Increment="100"
+                             Value="{Binding MaxIterations}" />
+            </StackPanel>
+
+            <StackPanel>
+              <TextBlock Classes="field-label"
+                         Text="Шагов по кнопке Step"
+                         TextWrapping="Wrap" />
+              <NumericUpDown Minimum="1"
+                             Maximum="1000"
+                             Increment="1"
+                             Value="{Binding StepBatchSize}" />
+            </StackPanel>
 
             <CheckBox Content="Остановить при отсутствии улучшений"
                       IsChecked="{Binding UseMaxIterationsWithoutImprovement}" />
 
             <StackPanel IsVisible="{Binding UseMaxIterationsWithoutImprovement}">
-              <TextBlock Classes="field-label" Text="Max iterations without improvement" />
+              <TextBlock Classes="field-label"
+                         Text="Max iterations without improvement"
+                         TextWrapping="Wrap" />
               <NumericUpDown Minimum="20"
                              Maximum="10000"
                              Increment="10"
                              Value="{Binding MaxIterationsWithoutImprovement}" />
             </StackPanel>
 
-            <StackPanel>
-              <TextBlock Classes="field-label" Text="Seed (опционально)" />
-              <NumericUpDown Minimum="0"
-                             Maximum="2147483647"
-                             Increment="1"
-                             Value="{Binding Seed}" />
-            </StackPanel>
-
-            <WrapPanel Margin="0,6,0,0" ItemHeight="38" ItemWidth="126">
+            <WrapPanel Margin="0,6,0,0">
               <Button Classes="action"
+                      Width="126"
+                      Margin="0,0,10,10"
                       Command="{Binding InitializeCommand}"
                       Content="Initialize" />
+
               <Button Classes="action"
+                      Width="126"
+                      Margin="0,0,10,10"
                       Command="{Binding StepCommand}"
                       Content="Step" />
-              <Button Classes="action"
-                      Command="{Binding StepBatchCommand}"
-                      Content="Step xN" />
+
               <Button Classes="primary-action"
+                      Width="126"
+                      Margin="0,0,10,10"
                       Command="{Binding RunCommand}"
                       Content="Run" />
+
               <Button Classes="action"
+                      Width="126"
+                      Margin="0,0,10,10"
                       Command="{Binding ResetCommand}"
                       Content="Reset" />
             </WrapPanel>
@@ -157,12 +177,16 @@
         <Border Classes="card">
           <StackPanel Spacing="10">
             <TextBlock Classes="panel-title" Text="Визуализация" />
+
             <CheckBox Content="Показывать номера вершин"
                       IsChecked="{Binding ShowVertexLabels}" />
+
             <CheckBox Content="Показывать веса рёбер"
                       IsChecked="{Binding ShowWeights}" />
+
             <CheckBox Content="Показывать направление рёбер"
                       IsChecked="{Binding ShowDirections}" />
+
             <CheckBox Content="Фиксировать лучший путь"
                       IsChecked="{Binding ShowBestRoutePinned}" />
 
@@ -185,31 +209,39 @@
                   <TextBlock Classes="metric-value" Text="{Binding IterationCount}" />
                 </StackPanel>
               </Border>
+
               <Border Classes="metric-pill" Margin="0,0,0,8">
                 <StackPanel>
                   <TextBlock Classes="muted" Text="Вычисления ЦФ" />
                   <TextBlock Classes="metric-value" Text="{Binding ObjectiveEvaluations}" />
                 </StackPanel>
               </Border>
+
               <Border Classes="metric-pill" Margin="0,0,8,8">
                 <StackPanel>
                   <TextBlock Classes="muted" Text="Лучшее значение" />
                   <TextBlock Classes="metric-value" Text="{Binding BestCostText}" />
                 </StackPanel>
               </Border>
+
               <Border Classes="metric-pill" Margin="0,0,0,8">
                 <StackPanel>
-                  <TextBlock Classes="muted" Text="Допустимое решение" />
+                  <TextBlock Classes="muted" Text="Маршрут" />
                   <TextBlock Classes="metric-value" Text="{Binding FeasibleText}" />
                 </StackPanel>
               </Border>
-              <Border Classes="metric-pill" Margin="0,0,8,0" IsVisible="{Binding IsAntColony}">
+
+              <Border Classes="metric-pill"
+                      Margin="0,0,8,0"
+                      IsVisible="{Binding IsAntColony}">
                 <StackPanel>
                   <TextBlock Classes="muted" Text="Успешные муравьи" />
                   <TextBlock Classes="metric-value" Text="{Binding SuccessfulAnts}" />
                 </StackPanel>
               </Border>
-              <Border Classes="metric-pill" IsVisible="{Binding IsAntColony}">
+
+              <Border Classes="metric-pill"
+                      IsVisible="{Binding IsAntColony}">
                 <StackPanel>
                   <TextBlock Classes="muted" Text="Лучшее на итерации" />
                   <TextBlock Classes="metric-value" Text="{Binding IterationBestCostText}" />
@@ -225,49 +257,69 @@
             </Border>
           </StackPanel>
         </Border>
-
-        <Border Classes="card">
-          <StackPanel Spacing="6">
-            <TextBlock Classes="field-label" Text="Статус" />
-            <TextBlock Text="{Binding StatusMessage}" TextWrapping="Wrap" />
-          </StackPanel>
-        </Border>
       </StackPanel>
     </ScrollViewer>
 
-    <Grid Grid.Row="0" Grid.Column="1" Margin="0,16,16,12" RowDefinitions="Auto,*">
+    <Grid Grid.Row="0"
+          Grid.Column="1"
+          RowDefinitions="Auto,*">
+
       <Border Classes="card">
-        <Grid ColumnDefinitions="*,Auto">
+        <StackPanel Spacing="12">
           <StackPanel Spacing="4">
             <TextBlock Classes="panel-title" Text="{Binding GraphTitle}" />
             <TextBlock Classes="muted" Text="{Binding AlgorithmTitle}" />
           </StackPanel>
 
-          <WrapPanel Grid.Column="1" HorizontalAlignment="Right" ItemHeight="36">
-            <Button Classes="action" Content="＋" Click="ZoomInPlotClick" />
-            <Button Classes="action" Content="－" Click="ZoomOutPlotClick" />
-            <Button Classes="action" Content="Fit" Click="ResetPlotViewClick" />
+          <WrapPanel>
             <Button Classes="action"
-                    Content="Peek best"
+                    Margin="0,0,10,10"
+                    Content="＋"
+                    Click="ZoomInPlotClick" />
+
+            <Button Classes="action"
+                    Margin="0,0,10,10"
+                    Content="－"
+                    Click="ZoomOutPlotClick" />
+
+            <Button Classes="action"
+                    Margin="0,0,10,10"
+                    Content="Сброс масштаба"
+                    Click="ResetPlotViewClick" />
+
+            <Button Classes="action"
+                    Margin="0,0,10,10"
+                    Content="Показать лучший"
                     IsEnabled="{Binding HasBestRoute}"
                     PointerPressed="BestRoutePeekPressed"
                     PointerReleased="BestRoutePeekReleased"
                     PointerCaptureLost="BestRoutePeekCaptureLost" />
-            <Button Classes="action" Content="Экспорт PNG" Click="ExportGraphImageClick" />
+
             <Button Classes="action"
+                    Margin="0,0,10,10"
+                    Content="Экспорт PNG"
+                    Click="ExportGraphImageClick" />
+
+            <Button Classes="action"
+                    Margin="0,0,10,10"
                     Content="Экспорт маршрута"
                     IsEnabled="{Binding HasBestRoute}"
                     Click="ExportRouteClick" />
+
             <Button Classes="action"
+                    Margin="0,0,10,10"
                     Content="График"
                     IsEnabled="{Binding CanShowHistory}"
                     Click="OpenHistoryClick" />
           </WrapPanel>
-        </Grid>
+        </StackPanel>
       </Border>
 
-      <Border Grid.Row="1" Classes="surface-card">
+      <Border Grid.Row="1"
+              Classes="surface-card">
         <controls:GraphCanvasControl x:Name="GraphCanvas"
+                                     HorizontalAlignment="Stretch"
+                                     VerticalAlignment="Stretch"
                                      GraphData="{Binding LoadedGraph}"
                                      CurrentRoute="{Binding CurrentRoute}"
                                      BestRoute="{Binding BestRoute}"
@@ -287,8 +339,7 @@
               Classes="bottom-panel"
               IsVisible="{Binding IsAntColony}"
               Header="Маршруты муравьёв последней итерации"
-              IsExpanded="False"
-              Margin="0,0,16,12">
+              IsExpanded="False">
       <Border Classes="surface-card">
         <DataGrid AutoGenerateColumns="False"
                   ItemsSource="{Binding AntRouteRows}"
@@ -297,10 +348,10 @@
                   CanUserResizeColumns="True">
           <DataGrid.Columns>
             <DataGridTextColumn Header="#" Binding="{Binding Rank}" Width="70" />
-            <DataGridTextColumn Header="Cost" Binding="{Binding CostText}" Width="110" />
-            <DataGridTextColumn Header="Feasible" Binding="{Binding FeasibilityText}" Width="110" />
-            <DataGridTextColumn Header="Complete" Binding="{Binding CompletionText}" Width="120" />
-            <DataGridTextColumn Header="Route" Binding="{Binding RouteText}" Width="*" />
+            <DataGridTextColumn Header="Стоимость" Binding="{Binding CostText}" Width="120" />
+            <DataGridTextColumn Header="Статус" Binding="{Binding FeasibilityText}" Width="130" />
+            <DataGridTextColumn Header="Построение" Binding="{Binding CompletionText}" Width="140" />
+            <DataGridTextColumn Header="Маршрут" Binding="{Binding RouteText}" Width="*" />
           </DataGrid.Columns>
         </DataGrid>
       </Border>

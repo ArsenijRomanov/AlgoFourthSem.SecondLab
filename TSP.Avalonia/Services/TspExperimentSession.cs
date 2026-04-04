@@ -116,7 +116,7 @@ public sealed class TspExperimentSession
         }
 
         var snapshots = new List<IterationSnapshot>();
-        for (var index = 0; index < steps && ShouldContinue(); index++)
+        for (var index = 0; index < steps; index++)
         {
             _solver.Step();
             UpdateImprovementCounters();

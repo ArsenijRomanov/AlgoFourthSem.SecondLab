@@ -20,7 +20,7 @@
       <StackPanel Spacing="4">
         <TextBlock Classes="panel-title" Text="История лучшего значения" />
         <TextBlock Classes="muted"
-                   Text="Точки ставятся по номеру итерации. После Step xN новые точки будут отстоять друг от друга на N." />
+                   Text="Точки ставятся по номеру итерации. После Step расстояние между новыми точками зависит от числа шагов, заданного для кнопки Step." />
       </StackPanel>
     </Border>
 

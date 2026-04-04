@@ -43,7 +43,6 @@ public sealed class MainWindowViewModel : ViewModelBase
     private int _maxIterations = 1000;
     private bool _useMaxIterationsWithoutImprovement = true;
     private int _maxIterationsWithoutImprovement = 200;
-    private int? _seed;
     private int _stepBatchSize = 10;
     private bool _showWeights;
     private bool _showVertexLabels = true;
@@ -52,12 +51,12 @@ public sealed class MainWindowViewModel : ViewModelBase
     private bool _showBestRoutePeek;
     private bool _isBusy;
     private bool _isInitialized;
-    private string _statusMessage = "Загрузите граф и инициализируйте алгоритм.";
+    private string _statusMessage = "";
     private string _bestCostText = "—";
     private string _bestRouteText = "—";
     private string _currentRouteCostText = "—";
     private string _iterationBestCostText = "—";
-    private string _feasibleText = "Нет";
+    private string _feasibleText = "Не найден";
     private int _iterationCount;
     private int _objectiveEvaluations;
     private int _successfulAnts;
@@ -108,11 +107,11 @@ public sealed class MainWindowViewModel : ViewModelBase
         _selectedExample = ExampleOptions[0];
 
         InitializeCommand = new RelayCommand(InitializeSolver, CanInitializeSolver);
-        StepCommand = new RelayCommand(() => ExecuteSteps(1), CanStep);
-        StepBatchCommand = new RelayCommand(() => ExecuteSteps(StepBatchSize), CanStep);
+        StepCommand = new RelayCommand(() => ExecuteSteps(Math.Max(1, StepBatchSize)), CanStep);
         RunCommand = new AsyncRelayCommand(RunAsync, CanStep);
         ResetCommand = new RelayCommand(ResetSession, () => !IsBusy);
         LoadExampleCommand = new AsyncRelayCommand(LoadSelectedExampleAsync, () => !IsBusy && SelectedExample is not null);
+        ResetAdvancedSettingsCommand = new RelayCommand(ResetAdvancedSettings, () => !IsBusy);
     }
 
     public IReadOnlyList<NamedOption<SolverFamily>> AlgorithmOptions { get; }
@@ -131,13 +130,13 @@ public sealed class MainWindowViewModel : ViewModelBase
 
     public ICommand StepCommand { get; }
 
-    public ICommand StepBatchCommand { get; }
-
     public ICommand RunCommand { get; }
 
     public ICommand ResetCommand { get; }
 
     public ICommand LoadExampleCommand { get; }
+
+    public ICommand ResetAdvancedSettingsCommand { get; }
 
     public NamedOption<SolverFamily> SelectedAlgorithm
     {
@@ -283,11 +282,6 @@ public sealed class MainWindowViewModel : ViewModelBase
         set => SetProperty(ref _maxIterationsWithoutImprovement, value);
     }
 
-    public int? Seed
-    {
-        get => _seed;
-        set => SetProperty(ref _seed, value);
-    }
 
     public int StepBatchSize
     {
@@ -531,7 +525,6 @@ public sealed class MainWindowViewModel : ViewModelBase
             var graph = await Task.Run(() => _parser.Parse(path, _layoutService));
             LoadedGraph = graph;
             ResetVisualState();
-            StatusMessage = $"Граф \"{graph.Name}\" успешно загружен.";
         }
         catch (Exception ex)
         {
@@ -563,7 +556,6 @@ public sealed class MainWindowViewModel : ViewModelBase
         var path = _examples.ResolveExamplePath(SelectedExample.Value);
         if (path is null)
         {
-            StatusMessage = $"Не удалось найти встроенный пример {SelectedExample.Value}.";
             return;
         }
 
@@ -595,7 +587,6 @@ public sealed class MainWindowViewModel : ViewModelBase
 
             ApplySnapshot(_session.GetSnapshot(), addToHistory: true);
             IsInitialized = true;
-            StatusMessage = "Алгоритм инициализирован и готов к выполнению.";
         }
         catch (Exception ex)
         {
@@ -613,9 +604,6 @@ public sealed class MainWindowViewModel : ViewModelBase
                 ApplySnapshot(snapshot, addToHistory: true);
             }
 
-            StatusMessage = snapshots.Count == 0
-                ? "Критерии остановки уже достигнуты."
-                : $"Выполнено шагов: {snapshots.Count}.";
         }
         catch (Exception ex)
         {
@@ -634,9 +622,6 @@ public sealed class MainWindowViewModel : ViewModelBase
                 await Dispatcher.UIThread.InvokeAsync(() => ApplySnapshot(snapshot, addToHistory: true));
             }
 
-            StatusMessage = snapshots.Count == 0
-                ? "Выполнение не началось: критерии остановки уже достигнуты."
-                : "Алгоритм завершил выполнение по критериям остановки.";
         }
         catch (Exception ex)
         {
@@ -653,7 +638,23 @@ public sealed class MainWindowViewModel : ViewModelBase
         _session.Reset();
         ResetVisualState();
         LoadedGraph = LoadedGraph;
-        StatusMessage = "Состояние GUI и решателя сброшено.";
+    }
+    
+    private void ResetAdvancedSettings()
+    {
+        if (IsSimulatedAnnealing)
+        {
+            TargetAcceptanceProbability = 0.8;
+            GeometricAlpha = 0.95;
+            return;
+        }
+
+        Alpha = 1.0;
+        Beta = 3.0;
+        EvaporationRate = 0.5;
+        Q = 100;
+        InitialPheromone = 1.0;
+        EliteAntCount = 5;
     }
 
     private bool CanInitializeSolver()
@@ -682,7 +683,7 @@ public sealed class MainWindowViewModel : ViewModelBase
 
         return new SimulatedAnnealingAlgorithmConfig
         {
-            Seed = Seed,
+            Seed = null,
             MaxIterations = MaxIterations,
             MaxIterationsWithoutImprovement = UseMaxIterationsWithoutImprovement ? MaxIterationsWithoutImprovement : null,
             InitialTemperature = UseAutomaticInitialTemperature ? null : ManualInitialTemperature,
@@ -723,7 +724,7 @@ public sealed class MainWindowViewModel : ViewModelBase
 
         return new AntColonyAlgorithmConfig
         {
-            Seed = Seed,
+            Seed = null,
             MaxIterations = MaxIterations,
             MaxIterationsWithoutImprovement = UseMaxIterationsWithoutImprovement ? MaxIterationsWithoutImprovement : null,
             AntCount = AntCount,
@@ -754,7 +755,7 @@ public sealed class MainWindowViewModel : ViewModelBase
     {
         IterationCount = snapshot.Iteration;
         ObjectiveEvaluations = snapshot.ObjectiveEvaluations;
-        FeasibleText = snapshot.HasFeasibleSolution ? "Да" : "Нет";
+        FeasibleText = snapshot.HasFeasibleSolution ? "Найден" : "Не найден";
         BestRoute = snapshot.BestRoute;
         CurrentRoute = snapshot.CurrentRoute;
         Pheromones = snapshot.Pheromones;
@@ -792,7 +793,7 @@ public sealed class MainWindowViewModel : ViewModelBase
             {
                 Rank = index + 1,
                 CostText = item.Evaluation?.Cost.ToString("G8") ?? "—",
-                FeasibilityText = item.Evaluation?.IsFeasible == true ? "Да" : "Нет",
+                FeasibilityText = item.Evaluation?.IsFeasible == true ? "Допустим" : "Со штрафом",
                 CompletionText = item.IsComplete ? "Полный" : "Не завершён",
                 RouteText = _routeExporter.FormatRoute(item.Route),
                 Source = item
@@ -827,7 +828,7 @@ public sealed class MainWindowViewModel : ViewModelBase
         BestRouteText = "—";
         CurrentRouteCostText = "—";
         IterationBestCostText = "—";
-        FeasibleText = "Нет";
+        FeasibleText = "Не найден";
         IsInitialized = false;
         RaisePropertyChanged(nameof(CanShowHistory));
         RaisePropertyChanged(nameof(ShouldShowBestRoute));
@@ -838,9 +839,9 @@ public sealed class MainWindowViewModel : ViewModelBase
     {
         (InitializeCommand as RelayCommand)?.RaiseCanExecuteChanged();
         (StepCommand as RelayCommand)?.RaiseCanExecuteChanged();
-        (StepBatchCommand as RelayCommand)?.RaiseCanExecuteChanged();
         (RunCommand as AsyncRelayCommand)?.RaiseCanExecuteChanged();
         (ResetCommand as RelayCommand)?.RaiseCanExecuteChanged();
         (LoadExampleCommand as AsyncRelayCommand)?.RaiseCanExecuteChanged();
+        (ResetAdvancedSettingsCommand as RelayCommand)?.RaiseCanExecuteChanged();
     }
 }

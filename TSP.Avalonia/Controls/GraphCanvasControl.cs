@@ -229,7 +229,6 @@ public sealed class GraphCanvasControl : Control
         if (GraphData is null)
         {
             DrawText(context, "Загрузите граф, чтобы начать визуализацию.", new Point(28, 28), 18, new SolidColorBrush(Color.Parse("#8B9AB2")));
-            DrawText(context, "Поддерживаются встроенные примеры и STP 1.00 файлы.", new Point(28, 56), 13, new SolidColorBrush(Color.Parse("#718198")));
             return;
         }
 
@@ -507,16 +506,18 @@ public sealed class GraphCanvasControl : Control
     private void DrawCoordinateHints(DrawingContext context, ViewportTransform fit)
     {
         var bounds = GraphData!.GetBounds();
-        var left = bounds.Left.ToString("G6", CultureInfo.InvariantCulture);
-        var right = bounds.Right.ToString("G6", CultureInfo.InvariantCulture);
-        var bottom = bounds.Bottom.ToString("G6", CultureInfo.InvariantCulture);
-        var top = bounds.Top.ToString("G6", CultureInfo.InvariantCulture);
+        var xMin = bounds.Left.ToString("G6", CultureInfo.InvariantCulture);
+        var xMax = bounds.Right.ToString("G6", CultureInfo.InvariantCulture);
+        var yMin = bounds.Bottom.ToString("G6", CultureInfo.InvariantCulture);
+        var yMax = bounds.Top.ToString("G6", CultureInfo.InvariantCulture);
         var brush = new SolidColorBrush(Color.Parse("#60708A"));
 
-        DrawText(context, left, new Point(16, Bounds.Bottom - 24), 11, brush);
-        DrawText(context, right, new Point(Math.Max(16, Bounds.Right - 90), Bounds.Bottom - 24), 11, brush);
-        DrawText(context, top, new Point(12, 14), 11, brush);
-        DrawText(context, bottom, new Point(12, Math.Max(18, Bounds.Bottom - 44)), 11, brush);
+        DrawText(context, $"X: {xMin}", new Point(16, Bounds.Bottom - 24), 11, brush);
+        DrawText(context, $"X: {xMax}", new Point(Math.Max(16, Bounds.Right - 120), Bounds.Bottom - 24), 11, brush);
+        DrawText(context, $"Y: {yMax}", new Point(12, 14), 11, brush);
+        DrawText(context, $"Y: {yMin}", new Point(12, Math.Max(18, Bounds.Bottom - 44)), 11, brush);
+        DrawText(context, "X", new Point(Bounds.Center.X - 4, Bounds.Bottom - 24), 12, brush);
+        DrawText(context, "Y", new Point(12, Bounds.Center.Y - 8), 12, brush);
     }
 
     private static Point Midpoint(Point source, Point target)

@@ -10,7 +10,7 @@ public partial class AdvancedSettingsWindow : Window
         InitializeComponent();
     }
 
-    private void CloseClick(object? sender, RoutedEventArgs e)
+    public void CloseClick(object? sender, RoutedEventArgs e)
     {
         Close();
     }

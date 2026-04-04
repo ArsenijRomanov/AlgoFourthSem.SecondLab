@@ -38,7 +38,7 @@ AlgoFourthSem.SecondLab/
 - выбор встроенного графа или загрузка `.stp`
 - конфигурация алгоритма
 - критерии остановки
-- кнопки `Initialize`, `Step`, `Step xN`, `Run`, `Reset`
+- кнопки `Initialize`, `Step`, `Run`, `Reset`
 - блок текущего результата
 
 ### Справа
