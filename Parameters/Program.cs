@@ -20,108 +20,133 @@ internal static class Program
         AllowTrailingCommas = true,
         DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
     };
+    
+    private static readonly JsonSerializerOptions RawJsonLineOptions = new(JsonOptions)
+    {
+        WriteIndented = false
+    };
 
     private static readonly object RawWriterLock = new();
     private static long _plannedRuns;
     private static long _completedRuns;
 
     public static int Main(string[] args)
+{
+    try
     {
-        try
+        var postprocessOnly = args.Any(arg =>
+            arg.Equals("--postprocess-only", StringComparison.OrdinalIgnoreCase));
+
+        var configArgument = args.FirstOrDefault(arg =>
+            !arg.StartsWith("--", StringComparison.Ordinal));
+
+        var configPath = configArgument is not null
+            ? ResolvePath(configArgument)
+            : ResolvePath("runner-config.json");
+
+        if (!File.Exists(configPath))
         {
-            var configPath = args.Length > 0
-                ? ResolvePath(args[0])
-                : ResolvePath("runner-config.json");
+            Console.WriteLine($"Не найден конфиг: {configPath}");
+            return 1;
+        }
 
-            if (!File.Exists(configPath))
+        var config = LoadConfig(configPath);
+        ValidateConfig(config);
+
+        var outputDirectory = ResolveOutputDirectory(config.Output.BaseDirectory, config.Output.RunName);
+        Directory.CreateDirectory(outputDirectory);
+
+        var copiedConfigPath = Path.Combine(outputDirectory, Path.GetFileName(configPath));
+        File.Copy(configPath, copiedConfigPath, true);
+
+        Console.WriteLine($"Конфиг: {configPath}");
+        Console.WriteLine($"Папка результатов: {outputDirectory}");
+
+        var graphs = LoadGraphs(config);
+        _plannedRuns = CountPlannedRuns(config, graphs.Count);
+        _completedRuns = 0;
+
+        Console.WriteLine($"Графов: {graphs.Count}");
+        Console.WriteLine($"Всего запусков по плану: {_plannedRuns}");
+
+        var rawRunsPath = Path.Combine(outputDirectory, "raw-runs.jsonl");
+
+        if (!postprocessOnly)
+        {
+            using var rawWriter = new StreamWriter(rawRunsPath, false, new UTF8Encoding(false));
+
+            foreach (var experimentClass in config.Classes)
             {
-                Console.WriteLine($"Не найден конфиг: {configPath}");
-                return 1;
-            }
+                var parameterSetCount = CountParameterSets(experimentClass);
+                Console.WriteLine();
+                Console.WriteLine($"=== Класс: {experimentClass.Name} ===");
+                Console.WriteLine($"Комбинаций параметров: {parameterSetCount}");
 
-            var config = LoadConfig(configPath);
-            ValidateConfig(config);
-
-            var outputDirectory = ResolveOutputDirectory(config.Output.BaseDirectory, config.Output.RunName);
-            Directory.CreateDirectory(outputDirectory);
-
-            var copiedConfigPath = Path.Combine(outputDirectory, Path.GetFileName(configPath));
-            File.Copy(configPath, copiedConfigPath, true);
-
-            Console.WriteLine($"Конфиг: {configPath}");
-            Console.WriteLine($"Папка результатов: {outputDirectory}");
-
-            var graphs = LoadGraphs(config);
-            _plannedRuns = CountPlannedRuns(config, graphs.Count);
-            _completedRuns = 0;
-
-            Console.WriteLine($"Графов: {graphs.Count}");
-            Console.WriteLine($"Всего запусков по плану: {_plannedRuns}");
-
-            var rawRunsPath = Path.Combine(outputDirectory, "raw-runs.jsonl");
-
-            using (var rawWriter = new StreamWriter(rawRunsPath, false, new UTF8Encoding(false)))
-            {
-                foreach (var experimentClass in config.Classes)
+                var options = new ParallelOptions
                 {
-                    var parameterSetCount = CountParameterSets(experimentClass);
-                    Console.WriteLine();
-                    Console.WriteLine($"=== Класс: {experimentClass.Name} ===");
-                    Console.WriteLine($"Комбинаций параметров: {parameterSetCount}");
+                    MaxDegreeOfParallelism = config.Execution.MaxDegreeOfParallelism > 0
+                        ? config.Execution.MaxDegreeOfParallelism
+                        : Environment.ProcessorCount
+                };
 
-                    var options = new ParallelOptions
-                    {
-                        MaxDegreeOfParallelism = config.Execution.MaxDegreeOfParallelism > 0
-                            ? config.Execution.MaxDegreeOfParallelism
-                            : Environment.ProcessorCount
-                    };
-
-                    Parallel.ForEach(
-                        EnumerateParameterSets(experimentClass),
-                        options,
-                        parameterSet => RunParameterSet(config, parameterSet, graphs, rawWriter));
-                }
+                Parallel.ForEach(
+                    EnumerateParameterSets(experimentClass),
+                    options,
+                    parameterSet => RunParameterSet(config, parameterSet, graphs, rawWriter));
             }
+
+            rawWriter.Flush();
 
             Console.WriteLine();
             Console.WriteLine("Все прогоны завершены. Идет постобработка...");
-
-            var runs = LoadRawRuns(rawRunsPath);
-            var references = BuildReferences(runs, graphs, config);
-            var summaries = BuildSummaries(runs, references, config);
-            var topConfigs = BuildTopConfigs(summaries, config.TopKPerClass);
-
-            if (config.Output.SaveReferences)
-            {
-                var referencesPath = Path.Combine(outputDirectory, "references.json");
-                File.WriteAllText(referencesPath, JsonSerializer.Serialize(references, JsonOptions));
-            }
-
-            if (config.Output.SaveSummaries)
-            {
-                var summariesPath = Path.Combine(outputDirectory, "summaries.json");
-                File.WriteAllText(summariesPath, JsonSerializer.Serialize(summaries, JsonOptions));
-            }
-
-            if (config.Output.SaveTopConfigs)
-            {
-                var topConfigsPath = Path.Combine(outputDirectory, "top-configs.json");
-                File.WriteAllText(topConfigsPath, JsonSerializer.Serialize(topConfigs, JsonOptions));
-            }
-
-            if (!config.Output.SaveRawRuns && File.Exists(rawRunsPath))
-                File.Delete(rawRunsPath);
-
-            Console.WriteLine("Готово.");
-            return 0;
         }
-        catch (Exception ex)
+        else
         {
-            Console.WriteLine("Фатальная ошибка:");
-            Console.WriteLine(ex);
-            return 1;
+            if (!File.Exists(rawRunsPath))
+            {
+                Console.WriteLine($"Не найден raw-runs.jsonl: {rawRunsPath}");
+                return 1;
+            }
+
+            Console.WriteLine("Режим: только постобработка существующего raw-runs.jsonl");
         }
+
+        var runs = LoadRawRuns(rawRunsPath);
+        var references = BuildReferences(runs, graphs, config);
+        var summaries = BuildSummaries(runs, references, config);
+        var topConfigs = BuildTopConfigs(summaries, config.TopKPerClass);
+
+        if (config.Output.SaveReferences)
+        {
+            var referencesPath = Path.Combine(outputDirectory, "references.json");
+            File.WriteAllText(referencesPath, JsonSerializer.Serialize(references, JsonOptions));
+        }
+
+        if (config.Output.SaveSummaries)
+        {
+            var summariesPath = Path.Combine(outputDirectory, "summaries.json");
+            File.WriteAllText(summariesPath, JsonSerializer.Serialize(summaries, JsonOptions));
+        }
+
+        if (config.Output.SaveTopConfigs)
+        {
+            var topConfigsPath = Path.Combine(outputDirectory, "top-configs.json");
+            File.WriteAllText(topConfigsPath, JsonSerializer.Serialize(topConfigs, JsonOptions));
+        }
+
+        if (!config.Output.SaveRawRuns && File.Exists(rawRunsPath))
+            File.Delete(rawRunsPath);
+
+        Console.WriteLine("Готово.");
+        return 0;
     }
+    catch (Exception ex)
+    {
+        Console.WriteLine("Фатальная ошибка:");
+        Console.WriteLine(ex);
+        return 1;
+    }
+}
 
     private static RunnerConfig LoadConfig(string path)
     {
@@ -439,11 +464,14 @@ internal static class Program
             for (var seed = config.SeedStart; seed < config.SeedStart + config.SeedCount; seed++)
             {
                 var result = RunSingleExperiment(config, parameterSet, graph, seed);
-                var jsonLine = JsonSerializer.Serialize(result, JsonOptions);
+                var jsonLine = JsonSerializer.Serialize(result, RawJsonLineOptions);
 
                 lock (RawWriterLock)
                 {
                     rawWriter.WriteLine(jsonLine);
+
+                    if ((_completedRuns + 1) % 100 == 0)
+                        rawWriter.Flush();
                 }
 
                 var completedRuns = Interlocked.Increment(ref _completedRuns);
@@ -567,18 +595,70 @@ internal static class Program
 
     private static List<RawRunRecord> LoadRawRuns(string rawRunsPath)
     {
+        var text = File.ReadAllText(rawRunsPath);
         var runs = new List<RawRunRecord>();
 
-        foreach (var line in File.ReadLines(rawRunsPath))
+        var startIndex = -1;
+        var depth = 0;
+        var inString = false;
+        var isEscaped = false;
+
+        for (var i = 0; i < text.Length; i++)
         {
-            if (string.IsNullOrWhiteSpace(line))
-                continue;
+            var ch = text[i];
 
-            var run = JsonSerializer.Deserialize<RawRunRecord>(line, JsonOptions);
-            if (run is null)
-                continue;
+            if (inString)
+            {
+                if (isEscaped)
+                {
+                    isEscaped = false;
+                    continue;
+                }
 
-            runs.Add(run);
+                if (ch == '\\')
+                {
+                    isEscaped = true;
+                    continue;
+                }
+
+                if (ch == '"')
+                {
+                    inString = false;
+                }
+
+                continue;
+            }
+
+            if (ch == '"')
+            {
+                inString = true;
+                continue;
+            }
+
+            if (ch == '{')
+            {
+                if (depth == 0)
+                    startIndex = i;
+
+                depth++;
+                continue;
+            }
+
+            if (ch == '}')
+            {
+                depth--;
+
+                if (depth == 0 && startIndex >= 0)
+                {
+                    var json = text.Substring(startIndex, i - startIndex + 1);
+                    var run = JsonSerializer.Deserialize<RawRunRecord>(json, JsonOptions);
+
+                    if (run is not null)
+                        runs.Add(run);
+
+                    startIndex = -1;
+                }
+            }
         }
 
         return runs;

@@ -2,25 +2,21 @@
   "graphs": [
     {
       "name": "small6",
-      "path": "../../../TSP.Core/Examples/small6.stp"
+      "path": "../../../../TSP.Core/Examples/small6.stp"
     },
     {
       "name": "berlin52",
-      "path": "../../../TSP.Core/Examples/berlin52.stp"
-    },
-    {
-      "name": "world666",
-      "path": "../../../TSP.Core/Examples/world666.stp"
+      "path": "../../../../TSP.Core/Examples/berlin52.stp"
     }
   ],
 
   "seedStart": 1,
-  "seedCount": 30,
+  "seedCount": 2,
   "topKPerClass": 3,
 
   "runLimits": {
-    "maxIterations": 10000,
-    "maxIterationsWithoutImprovement": null
+    "maxIterations": 1000,
+    "maxIterationsWithoutImprovement": 200
   },
 
   "scoring": {
@@ -29,8 +25,8 @@
   },
 
   "temperatureEstimation": {
-    "startsCount": 10,
-    "chainLength": 20,
+    "startsCount": 8,
+    "chainLength": 15,
     "fallbackTemperature": 1.0
   },
 
@@ -40,7 +36,7 @@
 
   "output": {
     "baseDirectory": "../../../RunnerResults",
-    "runName": "full-search-01",
+    "runName": "coarse-search-01",
     "saveRawRuns": true,
     "saveSummaries": true,
     "saveTopConfigs": true,
@@ -54,16 +50,11 @@
       "coolingKind": "Geometric",
       "temperatureMode": "Manual",
       "initialTemperatureValues": [
-        0.01, 0.05, 0.1, 0.5,
-        1.0, 2.5, 5.0, 10.0,
-        25.0, 50.0, 100.0, 250.0,
-        500.0, 1000.0
+        0.1, 1.0, 10.0, 100.0, 500.0
       ],
       "targetAcceptanceProbabilityValues": [],
       "geometricAlphaValues": [
-        0.80, 0.85, 0.88, 0.90,
-        0.92, 0.94, 0.95, 0.96,
-        0.97, 0.98, 0.99, 0.995
+        0.90, 0.95, 0.98, 0.995
       ]
     },
     {
@@ -73,14 +64,10 @@
       "temperatureMode": "Auto",
       "initialTemperatureValues": [],
       "targetAcceptanceProbabilityValues": [
-        0.50, 0.55, 0.60, 0.65,
-        0.70, 0.75, 0.80, 0.85,
-        0.90, 0.92, 0.95, 0.97, 0.99
+        0.60, 0.75, 0.85, 0.95
       ],
       "geometricAlphaValues": [
-        0.80, 0.85, 0.88, 0.90,
-        0.92, 0.94, 0.95, 0.96,
-        0.97, 0.98, 0.99, 0.995
+        0.90, 0.95, 0.98, 0.995
       ]
     },
     {
@@ -89,10 +76,7 @@
       "coolingKind": "Cauchy",
       "temperatureMode": "Manual",
       "initialTemperatureValues": [
-        0.01, 0.05, 0.1, 0.5,
-        1.0, 2.5, 5.0, 10.0,
-        25.0, 50.0, 100.0, 250.0,
-        500.0, 1000.0
+        0.1, 1.0, 10.0, 100.0, 500.0
       ],
       "targetAcceptanceProbabilityValues": [],
       "geometricAlphaValues": []
@@ -104,9 +88,7 @@
       "temperatureMode": "Auto",
       "initialTemperatureValues": [],
       "targetAcceptanceProbabilityValues": [
-        0.50, 0.55, 0.60, 0.65,
-        0.70, 0.75, 0.80, 0.85,
-        0.90, 0.92, 0.95, 0.97, 0.99
+        0.60, 0.75, 0.85, 0.95
       ],
       "geometricAlphaValues": []
     },
@@ -115,31 +97,22 @@
       "algorithm": "ACO",
       "useEliteAnts": false,
       "antCountValues": [
-        5, 10, 15, 20, 30, 40, 50,
-        75, 100, 150, 200
+        10, 30, 75
       ],
       "alphaValues": [
-        0.25, 0.5, 0.75, 1.0,
-        1.25, 1.5, 2.0, 2.5, 3.0
+        0.5, 1.0, 2.0
       ],
       "betaValues": [
-        0.5, 1.0, 1.5, 2.0,
-        2.5, 3.0, 4.0, 5.0, 7.0, 10.0
+        1.0, 3.0, 5.0
       ],
       "evaporationRateValues": [
-        0.05, 0.1, 0.2, 0.3,
-        0.4, 0.5, 0.6, 0.7,
-        0.8, 0.9, 0.95
+        0.1, 0.5, 0.9
       ],
       "qValues": [
-        0.1, 0.5, 1.0, 5.0,
-        10.0, 25.0, 50.0, 100.0,
-        250.0, 500.0, 1000.0
+        1.0, 10.0, 100.0
       ],
       "initialPheromoneValues": [
-        0.001, 0.01, 0.05, 0.1,
-        0.5, 1.0, 2.5, 5.0,
-        10.0, 25.0, 50.0, 100.0
+        0.01, 0.1, 1.0
       ],
       "eliteAntCountValues": []
     },
@@ -148,34 +121,25 @@
       "algorithm": "ACO",
       "useEliteAnts": true,
       "antCountValues": [
-        5, 10, 15, 20, 30, 40, 50,
-        75, 100, 150, 200
+        10, 30, 75
       ],
       "alphaValues": [
-        0.25, 0.5, 0.75, 1.0,
-        1.25, 1.5, 2.0, 2.5, 3.0
+        0.5, 1.0, 2.0
       ],
       "betaValues": [
-        0.5, 1.0, 1.5, 2.0,
-        2.5, 3.0, 4.0, 5.0, 7.0, 10.0
+        1.0, 3.0, 5.0
       ],
       "evaporationRateValues": [
-        0.05, 0.1, 0.2, 0.3,
-        0.4, 0.5, 0.6, 0.7,
-        0.8, 0.9, 0.95
+        0.1, 0.5, 0.9
       ],
       "qValues": [
-        0.1, 0.5, 1.0, 5.0,
-        10.0, 25.0, 50.0, 100.0,
-        250.0, 500.0, 1000.0
+        1.0, 10.0, 100.0
       ],
       "initialPheromoneValues": [
-        0.001, 0.01, 0.05, 0.1,
-        0.5, 1.0, 2.5, 5.0,
-        10.0, 25.0, 50.0, 100.0
+        0.01, 0.1, 1.0
       ],
       "eliteAntCountValues": [
-        1, 2, 3, 5, 7, 10, 15, 20, 30, 50
+        1, 5, 15
       ]
     }
   ]
