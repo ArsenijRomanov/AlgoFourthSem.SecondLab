@@ -1,0 +1,26 @@
+[
+  {
+    "graphName": "small6",
+    "graphPath": "/home/ars/SPbU/Algo.FourthSem/SecondLab/TSP/TSP.Core/Examples/small6.stp",
+    "referenceMode": "ExperimentalBest",
+    "referenceCost": 12,
+    "sourceClassName": "sa_geometric_manual",
+    "sourceParameterSetId": "sa_geometric_manual|SA|Geometric|Manual|t=0.10000000000000001|a=0.995",
+    "sourceSeed": 2,
+    "sourceElapsedMilliseconds": 0,
+    "sourceIterations": 271,
+    "sourceObjectiveEvaluations": 272
+  },
+  {
+    "graphName": "berlin52",
+    "graphPath": "/home/ars/SPbU/Algo.FourthSem/SecondLab/TSP/TSP.Core/Examples/berlin52.stp",
+    "referenceMode": "ExperimentalBest",
+    "referenceCost": 1887,
+    "sourceClassName": "aco_elite",
+    "sourceParameterSetId": "aco_elite|ACO|ants=10|alpha=2|beta=5|rho=0.10000000000000001|q=1|tau0=0.10000000000000001|elite=True|eliteCount=15",
+    "sourceSeed": 1,
+    "sourceElapsedMilliseconds": 648,
+    "sourceIterations": 235,
+    "sourceObjectiveEvaluations": 2350
+  }
+]

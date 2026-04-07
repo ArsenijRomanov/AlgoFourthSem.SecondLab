@@ -1,0 +1,959 @@
+[
+  {
+    "className": "aco_basic",
+    "top": [
+      {
+        "className": "aco_basic",
+        "parameterSetId": "aco_basic|ACO|ants=75|alpha=1|beta=3|rho=0.5|q=10|tau0=0.10000000000000001|elite=False",
+        "parameterSet": {
+          "id": "aco_basic|ACO|ants=75|alpha=1|beta=3|rho=0.5|q=10|tau0=0.10000000000000001|elite=False",
+          "className": "aco_basic",
+          "algorithm": "ACO",
+          "useEliteAnts": false,
+          "antCount": 75,
+          "alpha": 1,
+          "beta": 3,
+          "evaporationRate": 0.5,
+          "q": 10,
+          "initialPheromone": 0.1
+        },
+        "totalRuns": 4,
+        "feasibleRuns": 4,
+        "feasibilityRate": 1,
+        "meanScore": 0.000794912559618442,
+        "bestCostOverall": 12,
+        "meanBestCostOverall": 951,
+        "meanElapsedMilliseconds": 4457.25,
+        "meanIterations": 318,
+        "meanObjectiveEvaluations": 23846,
+        "graphs": [
+          {
+            "graphName": "berlin52",
+            "runs": 2,
+            "feasibleRuns": 2,
+            "feasibilityRate": 1,
+            "referenceCost": 1887,
+            "bestCost": 1890,
+            "meanBestCost": 1890,
+            "meanRelativeError": 0.001589825119236884,
+            "meanElapsedMilliseconds": 8838.5,
+            "meanIterations": 435,
+            "meanObjectiveEvaluations": 32625
+          },
+          {
+            "graphName": "small6",
+            "runs": 2,
+            "feasibleRuns": 2,
+            "feasibilityRate": 1,
+            "referenceCost": 12,
+            "bestCost": 12,
+            "meanBestCost": 12,
+            "meanRelativeError": 0,
+            "meanElapsedMilliseconds": 76,
+            "meanIterations": 201,
+            "meanObjectiveEvaluations": 15067
+          }
+        ]
+      },
+      {
+        "className": "aco_basic",
+        "parameterSetId": "aco_basic|ACO|ants=75|alpha=1|beta=3|rho=0.5|q=100|tau0=1|elite=False",
+        "parameterSet": {
+          "id": "aco_basic|ACO|ants=75|alpha=1|beta=3|rho=0.5|q=100|tau0=1|elite=False",
+          "className": "aco_basic",
+          "algorithm": "ACO",
+          "useEliteAnts": false,
+          "antCount": 75,
+          "alpha": 1,
+          "beta": 3,
+          "evaporationRate": 0.5,
+          "q": 100,
+          "initialPheromone": 1
+        },
+        "totalRuns": 4,
+        "feasibleRuns": 4,
+        "feasibilityRate": 1,
+        "meanScore": 0.000794912559618442,
+        "bestCostOverall": 12,
+        "meanBestCostOverall": 951,
+        "meanElapsedMilliseconds": 4492,
+        "meanIterations": 318,
+        "meanObjectiveEvaluations": 23846,
+        "graphs": [
+          {
+            "graphName": "berlin52",
+            "runs": 2,
+            "feasibleRuns": 2,
+            "feasibilityRate": 1,
+            "referenceCost": 1887,
+            "bestCost": 1890,
+            "meanBestCost": 1890,
+            "meanRelativeError": 0.001589825119236884,
+            "meanElapsedMilliseconds": 8903,
+            "meanIterations": 435,
+            "meanObjectiveEvaluations": 32625
+          },
+          {
+            "graphName": "small6",
+            "runs": 2,
+            "feasibleRuns": 2,
+            "feasibilityRate": 1,
+            "referenceCost": 12,
+            "bestCost": 12,
+            "meanBestCost": 12,
+            "meanRelativeError": 0,
+            "meanElapsedMilliseconds": 81,
+            "meanIterations": 201,
+            "meanObjectiveEvaluations": 15067
+          }
+        ]
+      },
+      {
+        "className": "aco_basic",
+        "parameterSetId": "aco_basic|ACO|ants=75|alpha=1|beta=3|rho=0.5|q=1|tau0=0.01|elite=False",
+        "parameterSet": {
+          "id": "aco_basic|ACO|ants=75|alpha=1|beta=3|rho=0.5|q=1|tau0=0.01|elite=False",
+          "className": "aco_basic",
+          "algorithm": "ACO",
+          "useEliteAnts": false,
+          "antCount": 75,
+          "alpha": 1,
+          "beta": 3,
+          "evaporationRate": 0.5,
+          "q": 1,
+          "initialPheromone": 0.01
+        },
+        "totalRuns": 4,
+        "feasibleRuns": 4,
+        "feasibilityRate": 1,
+        "meanScore": 0.000794912559618442,
+        "bestCostOverall": 12,
+        "meanBestCostOverall": 951,
+        "meanElapsedMilliseconds": 4495,
+        "meanIterations": 318,
+        "meanObjectiveEvaluations": 23846,
+        "graphs": [
+          {
+            "graphName": "berlin52",
+            "runs": 2,
+            "feasibleRuns": 2,
+            "feasibilityRate": 1,
+            "referenceCost": 1887,
+            "bestCost": 1890,
+            "meanBestCost": 1890,
+            "meanRelativeError": 0.001589825119236884,
+            "meanElapsedMilliseconds": 8907.5,
+            "meanIterations": 435,
+            "meanObjectiveEvaluations": 32625
+          },
+          {
+            "graphName": "small6",
+            "runs": 2,
+            "feasibleRuns": 2,
+            "feasibilityRate": 1,
+            "referenceCost": 12,
+            "bestCost": 12,
+            "meanBestCost": 12,
+            "meanRelativeError": 0,
+            "meanElapsedMilliseconds": 82.5,
+            "meanIterations": 201,
+            "meanObjectiveEvaluations": 15067
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "className": "aco_elite",
+    "top": [
+      {
+        "className": "aco_elite",
+        "parameterSetId": "aco_elite|ACO|ants=10|alpha=1|beta=3|rho=0.10000000000000001|q=1|tau0=0.10000000000000001|elite=True|eliteCount=5",
+        "parameterSet": {
+          "id": "aco_elite|ACO|ants=10|alpha=1|beta=3|rho=0.10000000000000001|q=1|tau0=0.10000000000000001|elite=True|eliteCount=5",
+          "className": "aco_elite",
+          "algorithm": "ACO",
+          "useEliteAnts": true,
+          "antCount": 10,
+          "alpha": 1,
+          "beta": 3,
+          "evaporationRate": 0.1,
+          "q": 1,
+          "initialPheromone": 0.1,
+          "eliteAntCount": 5
+        },
+        "totalRuns": 4,
+        "feasibleRuns": 4,
+        "feasibilityRate": 1,
+        "meanScore": 0,
+        "bestCostOverall": 12,
+        "meanBestCostOverall": 949.5,
+        "meanElapsedMilliseconds": 603.25,
+        "meanIterations": 309.5,
+        "meanObjectiveEvaluations": 3094.25,
+        "graphs": [
+          {
+            "graphName": "berlin52",
+            "runs": 2,
+            "feasibleRuns": 2,
+            "feasibilityRate": 1,
+            "referenceCost": 1887,
+            "bestCost": 1887,
+            "meanBestCost": 1887,
+            "meanRelativeError": 0,
+            "meanElapsedMilliseconds": 1196,
+            "meanIterations": 418,
+            "meanObjectiveEvaluations": 4180
+          },
+          {
+            "graphName": "small6",
+            "runs": 2,
+            "feasibleRuns": 2,
+            "feasibilityRate": 1,
+            "referenceCost": 12,
+            "bestCost": 12,
+            "meanBestCost": 12,
+            "meanRelativeError": 0,
+            "meanElapsedMilliseconds": 10.5,
+            "meanIterations": 201,
+            "meanObjectiveEvaluations": 2008.5
+          }
+        ]
+      },
+      {
+        "className": "aco_elite",
+        "parameterSetId": "aco_elite|ACO|ants=10|alpha=1|beta=3|rho=0.10000000000000001|q=10|tau0=1|elite=True|eliteCount=5",
+        "parameterSet": {
+          "id": "aco_elite|ACO|ants=10|alpha=1|beta=3|rho=0.10000000000000001|q=10|tau0=1|elite=True|eliteCount=5",
+          "className": "aco_elite",
+          "algorithm": "ACO",
+          "useEliteAnts": true,
+          "antCount": 10,
+          "alpha": 1,
+          "beta": 3,
+          "evaporationRate": 0.1,
+          "q": 10,
+          "initialPheromone": 1,
+          "eliteAntCount": 5
+        },
+        "totalRuns": 4,
+        "feasibleRuns": 4,
+        "feasibilityRate": 1,
+        "meanScore": 0,
+        "bestCostOverall": 12,
+        "meanBestCostOverall": 949.5,
+        "meanElapsedMilliseconds": 611.75,
+        "meanIterations": 309.5,
+        "meanObjectiveEvaluations": 3094.25,
+        "graphs": [
+          {
+            "graphName": "berlin52",
+            "runs": 2,
+            "feasibleRuns": 2,
+            "feasibilityRate": 1,
+            "referenceCost": 1887,
+            "bestCost": 1887,
+            "meanBestCost": 1887,
+            "meanRelativeError": 0,
+            "meanElapsedMilliseconds": 1212.5,
+            "meanIterations": 418,
+            "meanObjectiveEvaluations": 4180
+          },
+          {
+            "graphName": "small6",
+            "runs": 2,
+            "feasibleRuns": 2,
+            "feasibilityRate": 1,
+            "referenceCost": 12,
+            "bestCost": 12,
+            "meanBestCost": 12,
+            "meanRelativeError": 0,
+            "meanElapsedMilliseconds": 11,
+            "meanIterations": 201,
+            "meanObjectiveEvaluations": 2008.5
+          }
+        ]
+      },
+      {
+        "className": "aco_elite",
+        "parameterSetId": "aco_elite|ACO|ants=30|alpha=1|beta=3|rho=0.10000000000000001|q=100|tau0=0.01|elite=True|eliteCount=15",
+        "parameterSet": {
+          "id": "aco_elite|ACO|ants=30|alpha=1|beta=3|rho=0.10000000000000001|q=100|tau0=0.01|elite=True|eliteCount=15",
+          "className": "aco_elite",
+          "algorithm": "ACO",
+          "useEliteAnts": true,
+          "antCount": 30,
+          "alpha": 1,
+          "beta": 3,
+          "evaporationRate": 0.1,
+          "q": 100,
+          "initialPheromone": 0.01,
+          "eliteAntCount": 15
+        },
+        "totalRuns": 4,
+        "feasibleRuns": 4,
+        "feasibilityRate": 1,
+        "meanScore": 0,
+        "bestCostOverall": 12,
+        "meanBestCostOverall": 949.5,
+        "meanElapsedMilliseconds": 1352.25,
+        "meanIterations": 265,
+        "meanObjectiveEvaluations": 7947.5,
+        "graphs": [
+          {
+            "graphName": "berlin52",
+            "runs": 2,
+            "feasibleRuns": 2,
+            "feasibilityRate": 1,
+            "referenceCost": 1887,
+            "bestCost": 1887,
+            "meanBestCost": 1887,
+            "meanRelativeError": 0,
+            "meanElapsedMilliseconds": 2672,
+            "meanIterations": 329,
+            "meanObjectiveEvaluations": 9870
+          },
+          {
+            "graphName": "small6",
+            "runs": 2,
+            "feasibleRuns": 2,
+            "feasibilityRate": 1,
+            "referenceCost": 12,
+            "bestCost": 12,
+            "meanBestCost": 12,
+            "meanRelativeError": 0,
+            "meanElapsedMilliseconds": 32.5,
+            "meanIterations": 201,
+            "meanObjectiveEvaluations": 6025
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "className": "sa_cauchy_auto",
+    "top": [
+      {
+        "className": "sa_cauchy_auto",
+        "parameterSetId": "sa_cauchy_auto|SA|Cauchy|Auto|p=0.84999999999999998",
+        "parameterSet": {
+          "id": "sa_cauchy_auto|SA|Cauchy|Auto|p=0.84999999999999998",
+          "className": "sa_cauchy_auto",
+          "algorithm": "SA",
+          "coolingKind": "Cauchy",
+          "temperatureMode": "Auto",
+          "targetAcceptanceProbability": 0.85,
+          "useEliteAnts": false
+        },
+        "totalRuns": 4,
+        "feasibleRuns": 4,
+        "feasibilityRate": 1,
+        "meanScore": 0.21701112877583467,
+        "bestCostOverall": 12,
+        "meanBestCostOverall": 1359,
+        "meanElapsedMilliseconds": 2.25,
+        "meanIterations": 610.75,
+        "meanObjectiveEvaluations": 739.75,
+        "graphs": [
+          {
+            "graphName": "berlin52",
+            "runs": 2,
+            "feasibleRuns": 2,
+            "feasibilityRate": 1,
+            "referenceCost": 1887,
+            "bestCost": 2686,
+            "meanBestCost": 2706,
+            "meanRelativeError": 0.43402225755166934,
+            "meanElapsedMilliseconds": 4,
+            "meanIterations": 1000,
+            "meanObjectiveEvaluations": 1129
+          },
+          {
+            "graphName": "small6",
+            "runs": 2,
+            "feasibleRuns": 2,
+            "feasibilityRate": 1,
+            "referenceCost": 12,
+            "bestCost": 12,
+            "meanBestCost": 12,
+            "meanRelativeError": 0,
+            "meanElapsedMilliseconds": 0.5,
+            "meanIterations": 221.5,
+            "meanObjectiveEvaluations": 350.5
+          }
+        ]
+      },
+      {
+        "className": "sa_cauchy_auto",
+        "parameterSetId": "sa_cauchy_auto|SA|Cauchy|Auto|p=0.94999999999999996",
+        "parameterSet": {
+          "id": "sa_cauchy_auto|SA|Cauchy|Auto|p=0.94999999999999996",
+          "className": "sa_cauchy_auto",
+          "algorithm": "SA",
+          "coolingKind": "Cauchy",
+          "temperatureMode": "Auto",
+          "targetAcceptanceProbability": 0.95,
+          "useEliteAnts": false
+        },
+        "totalRuns": 4,
+        "feasibleRuns": 4,
+        "feasibilityRate": 1,
+        "meanScore": 0.2183359830418654,
+        "bestCostOverall": 12,
+        "meanBestCostOverall": 1361.5,
+        "meanElapsedMilliseconds": 1.5,
+        "meanIterations": 611,
+        "meanObjectiveEvaluations": 740,
+        "graphs": [
+          {
+            "graphName": "berlin52",
+            "runs": 2,
+            "feasibleRuns": 2,
+            "feasibilityRate": 1,
+            "referenceCost": 1887,
+            "bestCost": 2625,
+            "meanBestCost": 2711,
+            "meanRelativeError": 0.4366719660837308,
+            "meanElapsedMilliseconds": 3,
+            "meanIterations": 1000,
+            "meanObjectiveEvaluations": 1129
+          },
+          {
+            "graphName": "small6",
+            "runs": 2,
+            "feasibleRuns": 2,
+            "feasibilityRate": 1,
+            "referenceCost": 12,
+            "bestCost": 12,
+            "meanBestCost": 12,
+            "meanRelativeError": 0,
+            "meanElapsedMilliseconds": 0,
+            "meanIterations": 222,
+            "meanObjectiveEvaluations": 351
+          }
+        ]
+      },
+      {
+        "className": "sa_cauchy_auto",
+        "parameterSetId": "sa_cauchy_auto|SA|Cauchy|Auto|p=0.59999999999999998",
+        "parameterSet": {
+          "id": "sa_cauchy_auto|SA|Cauchy|Auto|p=0.59999999999999998",
+          "className": "sa_cauchy_auto",
+          "algorithm": "SA",
+          "coolingKind": "Cauchy",
+          "temperatureMode": "Auto",
+          "targetAcceptanceProbability": 0.6,
+          "useEliteAnts": false
+        },
+        "totalRuns": 4,
+        "feasibleRuns": 4,
+        "feasibilityRate": 1,
+        "meanScore": 0.24973502914679385,
+        "bestCostOverall": 12,
+        "meanBestCostOverall": 1420.75,
+        "meanElapsedMilliseconds": 1.25,
+        "meanIterations": 613.75,
+        "meanObjectiveEvaluations": 742.75,
+        "graphs": [
+          {
+            "graphName": "berlin52",
+            "runs": 2,
+            "feasibleRuns": 2,
+            "feasibilityRate": 1,
+            "referenceCost": 1887,
+            "bestCost": 2773,
+            "meanBestCost": 2829.5,
+            "meanRelativeError": 0.4994700582935877,
+            "meanElapsedMilliseconds": 2.5,
+            "meanIterations": 1000,
+            "meanObjectiveEvaluations": 1129
+          },
+          {
+            "graphName": "small6",
+            "runs": 2,
+            "feasibleRuns": 2,
+            "feasibilityRate": 1,
+            "referenceCost": 12,
+            "bestCost": 12,
+            "meanBestCost": 12,
+            "meanRelativeError": 0,
+            "meanElapsedMilliseconds": 0,
+            "meanIterations": 227.5,
+            "meanObjectiveEvaluations": 356.5
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "className": "sa_cauchy_manual",
+    "top": [
+      {
+        "className": "sa_cauchy_manual",
+        "parameterSetId": "sa_cauchy_manual|SA|Cauchy|Manual|t=100",
+        "parameterSet": {
+          "id": "sa_cauchy_manual|SA|Cauchy|Manual|t=100",
+          "className": "sa_cauchy_manual",
+          "algorithm": "SA",
+          "coolingKind": "Cauchy",
+          "temperatureMode": "Manual",
+          "initialTemperature": 100,
+          "useEliteAnts": false
+        },
+        "totalRuns": 4,
+        "feasibleRuns": 4,
+        "feasibilityRate": 1,
+        "meanScore": 0.19846316905140435,
+        "bestCostOverall": 12,
+        "meanBestCostOverall": 1324,
+        "meanElapsedMilliseconds": 3,
+        "meanIterations": 618,
+        "meanObjectiveEvaluations": 619,
+        "graphs": [
+          {
+            "graphName": "berlin52",
+            "runs": 2,
+            "feasibleRuns": 2,
+            "feasibilityRate": 1,
+            "referenceCost": 1887,
+            "bestCost": 2621,
+            "meanBestCost": 2636,
+            "meanRelativeError": 0.3969263381028087,
+            "meanElapsedMilliseconds": 6,
+            "meanIterations": 1000,
+            "meanObjectiveEvaluations": 1001
+          },
+          {
+            "graphName": "small6",
+            "runs": 2,
+            "feasibleRuns": 2,
+            "feasibilityRate": 1,
+            "referenceCost": 12,
+            "bestCost": 12,
+            "meanBestCost": 12,
+            "meanRelativeError": 0,
+            "meanElapsedMilliseconds": 0,
+            "meanIterations": 236,
+            "meanObjectiveEvaluations": 237
+          }
+        ]
+      },
+      {
+        "className": "sa_cauchy_manual",
+        "parameterSetId": "sa_cauchy_manual|SA|Cauchy|Manual|t=500",
+        "parameterSet": {
+          "id": "sa_cauchy_manual|SA|Cauchy|Manual|t=500",
+          "className": "sa_cauchy_manual",
+          "algorithm": "SA",
+          "coolingKind": "Cauchy",
+          "temperatureMode": "Manual",
+          "initialTemperature": 500,
+          "useEliteAnts": false
+        },
+        "totalRuns": 4,
+        "feasibleRuns": 4,
+        "feasibilityRate": 1,
+        "meanScore": 0.19992050874403816,
+        "bestCostOverall": 12,
+        "meanBestCostOverall": 1326.75,
+        "meanElapsedMilliseconds": 1.25,
+        "meanIterations": 620.75,
+        "meanObjectiveEvaluations": 621.75,
+        "graphs": [
+          {
+            "graphName": "berlin52",
+            "runs": 2,
+            "feasibleRuns": 2,
+            "feasibilityRate": 1,
+            "referenceCost": 1887,
+            "bestCost": 2613,
+            "meanBestCost": 2641.5,
+            "meanRelativeError": 0.3998410174880763,
+            "meanElapsedMilliseconds": 2.5,
+            "meanIterations": 1000,
+            "meanObjectiveEvaluations": 1001
+          },
+          {
+            "graphName": "small6",
+            "runs": 2,
+            "feasibleRuns": 2,
+            "feasibilityRate": 1,
+            "referenceCost": 12,
+            "bestCost": 12,
+            "meanBestCost": 12,
+            "meanRelativeError": 0,
+            "meanElapsedMilliseconds": 0,
+            "meanIterations": 241.5,
+            "meanObjectiveEvaluations": 242.5
+          }
+        ]
+      },
+      {
+        "className": "sa_cauchy_manual",
+        "parameterSetId": "sa_cauchy_manual|SA|Cauchy|Manual|t=0.10000000000000001",
+        "parameterSet": {
+          "id": "sa_cauchy_manual|SA|Cauchy|Manual|t=0.10000000000000001",
+          "className": "sa_cauchy_manual",
+          "algorithm": "SA",
+          "coolingKind": "Cauchy",
+          "temperatureMode": "Manual",
+          "initialTemperature": 0.1,
+          "useEliteAnts": false
+        },
+        "totalRuns": 4,
+        "feasibleRuns": 4,
+        "feasibilityRate": 1,
+        "meanScore": 0.2598039215686274,
+        "bestCostOverall": 12,
+        "meanBestCostOverall": 1439.75,
+        "meanElapsedMilliseconds": 1.25,
+        "meanIterations": 621,
+        "meanObjectiveEvaluations": 622,
+        "graphs": [
+          {
+            "graphName": "berlin52",
+            "runs": 2,
+            "feasibleRuns": 2,
+            "feasibilityRate": 1,
+            "referenceCost": 1887,
+            "bestCost": 2696,
+            "meanBestCost": 2867.5,
+            "meanRelativeError": 0.5196078431372548,
+            "meanElapsedMilliseconds": 2.5,
+            "meanIterations": 1000,
+            "meanObjectiveEvaluations": 1001
+          },
+          {
+            "graphName": "small6",
+            "runs": 2,
+            "feasibleRuns": 2,
+            "feasibilityRate": 1,
+            "referenceCost": 12,
+            "bestCost": 12,
+            "meanBestCost": 12,
+            "meanRelativeError": 0,
+            "meanElapsedMilliseconds": 0,
+            "meanIterations": 242,
+            "meanObjectiveEvaluations": 243
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "className": "sa_geometric_auto",
+    "top": [
+      {
+        "className": "sa_geometric_auto",
+        "parameterSetId": "sa_geometric_auto|SA|Geometric|Auto|p=0.75|a=0.90000000000000002",
+        "parameterSet": {
+          "id": "sa_geometric_auto|SA|Geometric|Auto|p=0.75|a=0.90000000000000002",
+          "className": "sa_geometric_auto",
+          "algorithm": "SA",
+          "coolingKind": "Geometric",
+          "temperatureMode": "Auto",
+          "targetAcceptanceProbability": 0.75,
+          "geometricAlpha": 0.9,
+          "useEliteAnts": false
+        },
+        "totalRuns": 4,
+        "feasibleRuns": 4,
+        "feasibilityRate": 1,
+        "meanScore": 0.21290408055113938,
+        "bestCostOverall": 12,
+        "meanBestCostOverall": 1351.25,
+        "meanElapsedMilliseconds": 1.5,
+        "meanIterations": 610.5,
+        "meanObjectiveEvaluations": 739.5,
+        "graphs": [
+          {
+            "graphName": "berlin52",
+            "runs": 2,
+            "feasibleRuns": 2,
+            "feasibilityRate": 1,
+            "referenceCost": 1887,
+            "bestCost": 2681,
+            "meanBestCost": 2690.5,
+            "meanRelativeError": 0.42580816110227876,
+            "meanElapsedMilliseconds": 3,
+            "meanIterations": 1000,
+            "meanObjectiveEvaluations": 1129
+          },
+          {
+            "graphName": "small6",
+            "runs": 2,
+            "feasibleRuns": 2,
+            "feasibilityRate": 1,
+            "referenceCost": 12,
+            "bestCost": 12,
+            "meanBestCost": 12,
+            "meanRelativeError": 0,
+            "meanElapsedMilliseconds": 0,
+            "meanIterations": 221,
+            "meanObjectiveEvaluations": 350
+          }
+        ]
+      },
+      {
+        "className": "sa_geometric_auto",
+        "parameterSetId": "sa_geometric_auto|SA|Geometric|Auto|p=0.94999999999999996|a=0.97999999999999998",
+        "parameterSet": {
+          "id": "sa_geometric_auto|SA|Geometric|Auto|p=0.94999999999999996|a=0.97999999999999998",
+          "className": "sa_geometric_auto",
+          "algorithm": "SA",
+          "coolingKind": "Geometric",
+          "temperatureMode": "Auto",
+          "targetAcceptanceProbability": 0.95,
+          "geometricAlpha": 0.98,
+          "useEliteAnts": false
+        },
+        "totalRuns": 4,
+        "feasibleRuns": 4,
+        "feasibilityRate": 1,
+        "meanScore": 0.22350291467938527,
+        "bestCostOverall": 12,
+        "meanBestCostOverall": 1371.25,
+        "meanElapsedMilliseconds": 1.5,
+        "meanIterations": 622.5,
+        "meanObjectiveEvaluations": 751.5,
+        "graphs": [
+          {
+            "graphName": "berlin52",
+            "runs": 2,
+            "feasibleRuns": 2,
+            "feasibilityRate": 1,
+            "referenceCost": 1887,
+            "bestCost": 2719,
+            "meanBestCost": 2730.5,
+            "meanRelativeError": 0.44700582935877053,
+            "meanElapsedMilliseconds": 3,
+            "meanIterations": 1000,
+            "meanObjectiveEvaluations": 1129
+          },
+          {
+            "graphName": "small6",
+            "runs": 2,
+            "feasibleRuns": 2,
+            "feasibilityRate": 1,
+            "referenceCost": 12,
+            "bestCost": 12,
+            "meanBestCost": 12,
+            "meanRelativeError": 0,
+            "meanElapsedMilliseconds": 0,
+            "meanIterations": 245,
+            "meanObjectiveEvaluations": 374
+          }
+        ]
+      },
+      {
+        "className": "sa_geometric_auto",
+        "parameterSetId": "sa_geometric_auto|SA|Geometric|Auto|p=0.59999999999999998|a=0.94999999999999996",
+        "parameterSet": {
+          "id": "sa_geometric_auto|SA|Geometric|Auto|p=0.59999999999999998|a=0.94999999999999996",
+          "className": "sa_geometric_auto",
+          "algorithm": "SA",
+          "coolingKind": "Geometric",
+          "temperatureMode": "Auto",
+          "targetAcceptanceProbability": 0.6,
+          "geometricAlpha": 0.95,
+          "useEliteAnts": false
+        },
+        "totalRuns": 4,
+        "feasibleRuns": 4,
+        "feasibilityRate": 1,
+        "meanScore": 0.22747747747747749,
+        "bestCostOverall": 12,
+        "meanBestCostOverall": 1378.75,
+        "meanElapsedMilliseconds": 3,
+        "meanIterations": 611,
+        "meanObjectiveEvaluations": 740,
+        "graphs": [
+          {
+            "graphName": "berlin52",
+            "runs": 2,
+            "feasibleRuns": 2,
+            "feasibilityRate": 1,
+            "referenceCost": 1887,
+            "bestCost": 2581,
+            "meanBestCost": 2745.5,
+            "meanRelativeError": 0.45495495495495497,
+            "meanElapsedMilliseconds": 5,
+            "meanIterations": 1000,
+            "meanObjectiveEvaluations": 1129
+          },
+          {
+            "graphName": "small6",
+            "runs": 2,
+            "feasibleRuns": 2,
+            "feasibilityRate": 1,
+            "referenceCost": 12,
+            "bestCost": 12,
+            "meanBestCost": 12,
+            "meanRelativeError": 0,
+            "meanElapsedMilliseconds": 1,
+            "meanIterations": 222,
+            "meanObjectiveEvaluations": 351
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "className": "sa_geometric_manual",
+    "top": [
+      {
+        "className": "sa_geometric_manual",
+        "parameterSetId": "sa_geometric_manual|SA|Geometric|Manual|t=10|a=0.97999999999999998",
+        "parameterSet": {
+          "id": "sa_geometric_manual|SA|Geometric|Manual|t=10|a=0.97999999999999998",
+          "className": "sa_geometric_manual",
+          "algorithm": "SA",
+          "coolingKind": "Geometric",
+          "temperatureMode": "Manual",
+          "initialTemperature": 10,
+          "geometricAlpha": 0.98,
+          "useEliteAnts": false
+        },
+        "totalRuns": 4,
+        "feasibleRuns": 4,
+        "feasibilityRate": 1,
+        "meanScore": 0.18084260731319554,
+        "bestCostOverall": 12,
+        "meanBestCostOverall": 1290.75,
+        "meanElapsedMilliseconds": 2.25,
+        "meanIterations": 619.25,
+        "meanObjectiveEvaluations": 620.25,
+        "graphs": [
+          {
+            "graphName": "berlin52",
+            "runs": 2,
+            "feasibleRuns": 2,
+            "feasibilityRate": 1,
+            "referenceCost": 1887,
+            "bestCost": 2480,
+            "meanBestCost": 2569.5,
+            "meanRelativeError": 0.3616852146263911,
+            "meanElapsedMilliseconds": 4.5,
+            "meanIterations": 1000,
+            "meanObjectiveEvaluations": 1001
+          },
+          {
+            "graphName": "small6",
+            "runs": 2,
+            "feasibleRuns": 2,
+            "feasibilityRate": 1,
+            "referenceCost": 12,
+            "bestCost": 12,
+            "meanBestCost": 12,
+            "meanRelativeError": 0,
+            "meanElapsedMilliseconds": 0,
+            "meanIterations": 238.5,
+            "meanObjectiveEvaluations": 239.5
+          }
+        ]
+      },
+      {
+        "className": "sa_geometric_manual",
+        "parameterSetId": "sa_geometric_manual|SA|Geometric|Manual|t=100|a=0.90000000000000002",
+        "parameterSet": {
+          "id": "sa_geometric_manual|SA|Geometric|Manual|t=100|a=0.90000000000000002",
+          "className": "sa_geometric_manual",
+          "algorithm": "SA",
+          "coolingKind": "Geometric",
+          "temperatureMode": "Manual",
+          "initialTemperature": 100,
+          "geometricAlpha": 0.9,
+          "useEliteAnts": false
+        },
+        "totalRuns": 4,
+        "feasibleRuns": 4,
+        "feasibilityRate": 1,
+        "meanScore": 0.1895866454689984,
+        "bestCostOverall": 12,
+        "meanBestCostOverall": 1307.25,
+        "meanElapsedMilliseconds": 1.5,
+        "meanIterations": 619.25,
+        "meanObjectiveEvaluations": 620.25,
+        "graphs": [
+          {
+            "graphName": "berlin52",
+            "runs": 2,
+            "feasibleRuns": 2,
+            "feasibilityRate": 1,
+            "referenceCost": 1887,
+            "bestCost": 2497,
+            "meanBestCost": 2602.5,
+            "meanRelativeError": 0.3791732909379968,
+            "meanElapsedMilliseconds": 3,
+            "meanIterations": 1000,
+            "meanObjectiveEvaluations": 1001
+          },
+          {
+            "graphName": "small6",
+            "runs": 2,
+            "feasibleRuns": 2,
+            "feasibilityRate": 1,
+            "referenceCost": 12,
+            "bestCost": 12,
+            "meanBestCost": 12,
+            "meanRelativeError": 0,
+            "meanElapsedMilliseconds": 0,
+            "meanIterations": 238.5,
+            "meanObjectiveEvaluations": 239.5
+          }
+        ]
+      },
+      {
+        "className": "sa_geometric_manual",
+        "parameterSetId": "sa_geometric_manual|SA|Geometric|Manual|t=100|a=0.995",
+        "parameterSet": {
+          "id": "sa_geometric_manual|SA|Geometric|Manual|t=100|a=0.995",
+          "className": "sa_geometric_manual",
+          "algorithm": "SA",
+          "coolingKind": "Geometric",
+          "temperatureMode": "Manual",
+          "initialTemperature": 100,
+          "geometricAlpha": 0.995,
+          "useEliteAnts": false
+        },
+        "totalRuns": 4,
+        "feasibleRuns": 4,
+        "feasibilityRate": 1,
+        "meanScore": 0.19899311075781664,
+        "bestCostOverall": 12,
+        "meanBestCostOverall": 1325,
+        "meanElapsedMilliseconds": 2.25,
+        "meanIterations": 662.75,
+        "meanObjectiveEvaluations": 663.75,
+        "graphs": [
+          {
+            "graphName": "berlin52",
+            "runs": 2,
+            "feasibleRuns": 2,
+            "feasibilityRate": 1,
+            "referenceCost": 1887,
+            "bestCost": 2586,
+            "meanBestCost": 2638,
+            "meanRelativeError": 0.3979862215156333,
+            "meanElapsedMilliseconds": 4.5,
+            "meanIterations": 1000,
+            "meanObjectiveEvaluations": 1001
+          },
+          {
+            "graphName": "small6",
+            "runs": 2,
+            "feasibleRuns": 2,
+            "feasibilityRate": 1,
+            "referenceCost": 12,
+            "bestCost": 12,
+            "meanBestCost": 12,
+            "meanRelativeError": 0,
+            "meanElapsedMilliseconds": 0,
+            "meanIterations": 325.5,
+            "meanObjectiveEvaluations": 326.5
+          }
+        ]
+      }
+    ]
+  }
+]
