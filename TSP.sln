@@ -4,6 +4,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TSP.Core", "TSP.Core\TSP.Co
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TSP.Avalonia", "TSP.Avalonia\TSP.Avalonia.csproj", "{7C583E6B-DC65-44E6-B5A3-E97F34BB4E6D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Parameters", "Parameters\Parameters.csproj", "{6776B195-BC08-49BD-95F1-D0014F333352}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{7C583E6B-DC65-44E6-B5A3-E97F34BB4E6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7C583E6B-DC65-44E6-B5A3-E97F34BB4E6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7C583E6B-DC65-44E6-B5A3-E97F34BB4E6D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6776B195-BC08-49BD-95F1-D0014F333352}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6776B195-BC08-49BD-95F1-D0014F333352}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6776B195-BC08-49BD-95F1-D0014F333352}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6776B195-BC08-49BD-95F1-D0014F333352}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
