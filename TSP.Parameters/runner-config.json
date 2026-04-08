@@ -7,6 +7,10 @@
     {
       "name": "berlin52",
       "path": "../../../../TSP.Core/Examples/berlin52.stp"
+    },
+    {
+      "name": "world666",
+      "path": "../../../../TSP.Core/Examples/world666.stp"
     }
   ],
 
