@@ -10,7 +10,7 @@
         WindowStartupLocation="CenterScreen"
         MinWidth="1100"
         MinHeight="760"
-        Title="Задача коммивояжёра — визуализация алгоритмов">
+        Title="Задача коммивояжёра">
   <Design.DataContext>
     <vm:MainWindowViewModel />
   </Design.DataContext>

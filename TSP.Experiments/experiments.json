@@ -1,0 +1,81 @@
+{
+  "runName": "compare-01",
+  "resultsDirectory": "./Results",
+  "saveHistories": true,
+  "historySamplingStep": 10,
+  "graphs": [
+    {
+      "name": "small6",
+      "path": "../TSP.Core/Examples/small6.stp"
+    },
+    {
+      "name": "berlin52",
+      "path": "../TSP.Core/Examples/berlin52.stp"
+    },
+    {
+      "name": "world666",
+      "path": "../TSP.Core/Examples/world666.stp"
+    }
+  ],
+  "seeds": [1, 2, 3, 4, 5],
+  "algorithms": [
+    {
+      "name": "sa_basic",
+      "kind": "sa",
+      "enabled": true,
+      "maxIterations": 30000,
+      "maxIterationsWithoutImprovement": 6000,
+      "initialTemperature": null,
+      "temperatureEstimationStartsCount": 10,
+      "temperatureEstimationChainLength": 20,
+      "temperatureEstimationFallbackTemperature": 1.0,
+      "temperatureEstimationTargetAcceptanceProbability": 0.8,
+      "coolingKind": "Geometric",
+      "geometricAlpha": 0.995
+    },
+    {
+      "name": "sa_cauchy",
+      "kind": "sa",
+      "enabled": true,
+      "maxIterations": 30000,
+      "maxIterationsWithoutImprovement": 6000,
+      "initialTemperature": null,
+      "temperatureEstimationStartsCount": 10,
+      "temperatureEstimationChainLength": 20,
+      "temperatureEstimationFallbackTemperature": 1.0,
+      "temperatureEstimationTargetAcceptanceProbability": 0.8,
+      "coolingKind": "Cauchy",
+      "geometricAlpha": 0.995
+    },
+    {
+      "name": "aco_basic",
+      "kind": "aco",
+      "enabled": true,
+      "maxIterations": 1000,
+      "maxIterationsWithoutImprovement": 200,
+      "antCount": 40,
+      "alpha": 1.0,
+      "beta": 3.0,
+      "evaporationRate": 0.5,
+      "q": 100.0,
+      "initialPheromone": 1.0,
+      "useEliteAnts": false,
+      "eliteAntCount": 5
+    },
+    {
+      "name": "aco_elite",
+      "kind": "aco",
+      "enabled": true,
+      "maxIterations": 1000,
+      "maxIterationsWithoutImprovement": 200,
+      "antCount": 40,
+      "alpha": 1.0,
+      "beta": 3.0,
+      "evaporationRate": 0.5,
+      "q": 100.0,
+      "initialPheromone": 1.0,
+      "useEliteAnts": true,
+      "eliteAntCount": 5
+    }
+  ]
+}
